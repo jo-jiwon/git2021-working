@@ -1,0 +1,151 @@
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 700px;
+      margin: 0 auto;
+    }
+
+    nav {
+      /* 스크롤박스 외부 원래 문서 배치 */
+      /* 스크롤박스 내부 top/left */
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      /* 태그 안에 컨텐츠를 중앙 정렬 */
+      text-align: center;
+    }
+
+    nav ul li {
+      /* 옆으로 나열 */
+      display: inline-block;
+      margin-left: 5rem;
+    }
+
+    nav ul li:first-child {
+      margin-left: 0;
+    }
+
+    article {
+      /* calculate: 계산하다 */
+      /* -/+ 꼭 띄어쓰기를 해야함, 붙이면 부호로 인식함 */
+      width: calc(100% - 200px - 1rem);
+      float: left;
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    section {
+      /* a태그로 스크롤 이동했을 때 상단 마진을 줌 */
+      /* id가 걸려있는 요소에 걸어야함 */
+      scroll-margin-top: 8rem;
+    }
+
+    aside {
+      width: 200px;
+      float: left;
+      position: sticky;
+      top: 5.5rem;
+    }
+
+    footer {
+      content: "";
+      clear: both;
+      display: block;
+    }
+
+    header,
+    nav,
+    article,
+    .banner,
+    aside,
+    footer {
+      background-color: burlywood;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Header</h1>
+  </header>
+  <nav>
+    <h1>Nav</h1>
+    <ul>
+      <li><a href="#menu-1">Menu1</a></li>
+      <li><a href="#menu-2">Menu2</a></li>
+      <li><a href="#menu-3">Menu3</a></li>
+    </ul>
+  </nav>
+  <div class="banner">
+    <h1>Banner</h1>
+  </div>
+  <article>
+    <section id="menu-1">
+      <h2>Menu1</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti sequi sint harum veniam, architecto animi
+        accusantium cum natus id fugit aspernatur nesciunt vero repellendus eum quos quas explicabo voluptatum atque?
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti sequi sint harum veniam, architecto animi
+        accusantium cum natus id fugit aspernatur nesciunt vero repellendus eum quos quas explicabo voluptatum atque?
+      </p>
+    </section>
+    <section id="menu-2">
+      <h2>Menu2</h2>
+      <p>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam tempore molestias ab harum eveniet eius eos,
+        vel quibusdam ad laboriosam ea esse amet nobis, itaque facere commodi velit expedita autem.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti sequi sint harum veniam, architecto animi
+        accusantium cum natus id fugit aspernatur nesciunt vero repellendus eum quos quas explicabo voluptatum atque?
+      </p>
+    </section>
+    <section id="menu-3">
+      <h2>Menu3</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi consectetur quam deserunt vero dicta iste
+        maxime eum perferendis, sunt, ut doloribus quo ipsam voluptate necessitatibus, ad ab aspernatur ipsa error!
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti sequi sint harum veniam, architecto animi
+        accusantium cum natus id fugit aspernatur nesciunt vero repellendus eum quos quas explicabo voluptatum atque?
+      </p>
+    </section>
+  </article>
+  <aside>
+    <h1>Aside</h1>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio eaque facere et minus ad alias tempore odit ab
+      illo nisi enim eius odio quaerat, libero maxime neque aperiam, iste officia!
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio eaque facere et minus ad alias tempore odit ab
+      illo nisi enim eius odio quaerat, libero maxime neque aperiam, iste officia!
+    </p>
+  </aside>
+  <footer>
+    <h3>Footer</h3>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed distinctio debitis deleniti error quo. Assumenda
+      placeat ipsam et tempore debitis incidunt sunt neque repellat molestias sapiente! Incidunt ipsam maxime
+      dignissimos?
+    </p>
+  </footer>
+
+</body>
+
+</html>

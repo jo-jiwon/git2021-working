@@ -1,0 +1,229 @@
+/******************** common ********************/
+@font-face {
+  font-family: 'BMEULJIRO';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/BMEULJIRO.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  font-size: 10px;
+  font-family: 'BMEULJIRO', cursive;
+}
+body {
+  width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  background-image: url('../img/bg_1.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-color: #ddd;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+p, ol, ul, li, th, td, h1, h2, h3, span, a{
+  font-size: 2rem;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+  font-weight: normal;
+}
+
+h1, h2, h3, p {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  user-select: none;
+  cursor: pointer;
+}
+
+.banner, header, nav, article, aside, footer {
+  box-shadow: 3px 3px 10px rgb(179, 179, 179);
+}
+
+p::selection, li::selection, td::selection, em::selection {
+  background-color: #2AC1BC;
+}
+/******************** header ********************/
+header {
+  margin: 2rem 0;
+}
+
+header h1 {
+  background-color: #2AC1BC;
+  color: #fff;
+  font-size: 3rem;
+  height: 70px;
+  line-height: 70px;
+}
+
+
+/******************** banner ********************/
+.banner {
+  background-image: url('../img/banner_y.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 15rem;
+}
+
+
+/******************** nav ********************/
+nav {
+  background-color: #f3ebe0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  margin: 2rem 0;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+}
+
+nav ul li {
+  background-color: #fff;
+  flex: 1;
+}
+
+nav ul li a {
+  color: #000;
+  padding: 2rem 0;
+  display: block;
+}
+
+nav ul li a::after {
+  content: "🧾";
+}
+
+nav ul li a:hover {
+  color: #fff;
+  background-color: #000;
+}
+
+
+/******************** article ********************/
+article {
+  margin: 2rem 0;
+}
+
+
+
+/******************** section ********************/
+section {
+  background-color: #f8f9fa;
+  padding: 2rem;
+}
+
+section h2 {
+  background-color: #2AC1BC;
+  padding: 2rem;
+  scroll-margin-top: 11rem;
+  border-radius: 10px 10px 0 0;
+}
+
+section h2 a {
+  color: #fff;
+  font-size: 2.5rem;
+}
+
+section h2 a:hover {
+  text-decoration: underline;
+}
+
+section p{
+  padding: 2rem;
+  background-color: #eceef2;
+}
+
+/* 재료 목록 */
+section table {
+  text-align: center;
+}
+
+section table th, section table td{
+  padding: 1rem;
+  width: 50%;
+}
+
+section table th:nth-child(1) {
+  border-right: 1px solid #fff;
+}
+
+section table td:nth-child(1) {
+  border-right: 1px solid #ccc;
+}
+
+section h3 {
+  background-color: #ffcf00;
+  width: 10rem;
+  margin: 4rem 0 2rem;
+  text-align: center;
+  border-radius: 50px;
+  color: #212339;
+  padding: 0.5rem;
+}
+
+section table th {
+  background-color: #2AC1BC;
+  color: #fff;
+}
+
+section table tbody tr:nth-child(2n-1) {
+  background-color: #eceef2;
+}
+
+section table tbody tr:nth-child(2n) {
+  background-color: #fff;
+}
+
+/* 조리순서 */
+section ol li {
+  text-align: left;
+  counter-increment: rint;
+  margin-bottom: 1.8rem;
+}
+
+section ol li::before {
+  content: counter(rint) ". ";
+  font-weight: bold;
+}
+
+
+/******************** aside ********************/
+aside {
+  width: 20rem;
+  background-color: #f8f9fa;
+  padding: 2rem;
+  position: sticky;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+
+aside img {
+  display: block;
+  width: 16rem;
+  margin: 0 auto;
+}
+
+
+/******************** footer ********************/
+footer {
+  clear: both;
+  margin: 2rem 0;
+  height: 70px;
+  line-height: 70px;
+  background-color: #eceef2;
+}

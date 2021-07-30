@@ -1,0 +1,74 @@
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    p {
+      width: 250px;
+      height: 150px;
+      border: 1px solid black;
+    }
+
+    p:nth-child(1) {
+      /* 요소의(element) 크기보다 컨텐츠가 클 때 숨김처림 */
+      /* overflow : 넘침 */
+      /* hidden : 숨김 */
+      overflow: hidden;
+    }
+
+    p:nth-child(2) {
+      overflow: scroll;
+    }
+
+    p:nth-child(3) {
+      overflow-y: scroll;
+    }
+
+    p:nth-child(4) {
+      overflow-y: auto;
+    }
+
+    p:nth-child(5) {
+      overflow: hidden;
+      /* 컨텐츠가 내용 밖으로 넘어서면 말 줄임표(...) */
+      text-overflow: ellipsis;
+      /* 빈공간은 기본적으로 밑으로 내림 */
+      /* 밑으로 안내림, 앞으로 이어짐 */
+      white-space: nowrap;
+      height: 25px;
+    }
+  </style>
+</head>
+
+<body>
+  <p>
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error possimus maiores dignissimos excepturi aperiam
+    voluptatem asperiores nesciunt numquam porro! Doloremque autem recusandae, vel deleniti esse dolorem blanditiis
+    corporis quae maiores.
+  </p>
+  <p>
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error possimus maiores dignissimos excepturi aperiam
+    voluptatem asperiores nesciunt numquam porro! Doloremque autem recusandae, vel deleniti esse dolorem blanditiis
+    corporis quae maiores.
+  </p>
+  <p>
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error possimus maiores dignissimos excepturi aperiam
+    voluptatem asperiores nesciunt numquam porro! Doloremque autem recusandae, vel deleniti esse dolorem blanditiis
+    corporis quae maiores.
+  </p>
+  <p>
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error possimus maiores dignissimos excepturi aperiam
+    voluptatem asperiores nesciunt numquam porro! Doloremque autem recusandae, vel deleniti esse dolorem blanditiis
+    corporis quae maiores.
+  </p>
+  <p title="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error possimus maiores dignissimos excepturi aperiam
+  voluptatem asperiores nesciunt numquam porro! Doloremque autem recusandae, vel deleniti esse dolorem blanditiis
+  corporis quae maiores.
+  ">
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error possimus maiores dignissimos excepturi aperiam
+    voluptatem asperiores nesciunt numquam porro! Doloremque autem recusandae, vel deleniti esse dolorem blanditiis
+    corporis quae maiores.
+  </p>
+</body>
+
+</html>

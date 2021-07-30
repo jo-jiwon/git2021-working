@@ -1,0 +1,30 @@
+/******************** common ********************/
+a{
+  text-decoration: none;
+}
+.text-color-w {
+  color: white;
+}
+
+/******************** header ********************/
+header>h1 {
+  background-color: #f5380f;
+}
+
+
+/******************** menu ********************/
+.menu-bg{
+  background-color: #f2f2d6;
+}
+.menu-tit {
+  background-color: #0066a2;
+}
+.menu-tit a{
+  color: #fff;
+}
+.menu-bg table th{
+  background-color: #ffca23;
+}
+.menu-bg table td{
+  background-color: #fff;
+}

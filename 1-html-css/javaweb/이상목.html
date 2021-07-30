@@ -1,0 +1,513 @@
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width; initial-scale=1">
+  <title>센스만점 나들이 도시락 메뉴</title>
+  <style>
+    @font-face {
+      font-family: 'Cafe24Syongsyong';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Syongsyong.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      color: black;
+      font-family: 'Cafe24Syongsyong', Times, serif;
+      width: 1100px;
+      margin: 0 auto;
+      background-image: url('./picnic.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      background-position-y: center;
+      display: grid;
+      gap: 20px;
+      grid-template-areas:
+        "header"
+        "nav"
+        "banner"
+        "content"
+        "sidebar"
+        "footer";
+    }
+
+    a {
+      color: #283618;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    ol {
+      padding-left: 1.2rem;
+      margin: 0;
+    }
+
+    th {
+      color: black;
+    }
+
+    header {
+      box-shadow: 0px 0px 5px black;
+      grid-area: header;
+    }
+
+    header>h1 {
+      background-color: #FFB6C1;
+      color: #fefae0;
+      padding: 0.5rem;
+      margin: 0;
+      text-align: center;
+    }
+
+    /*----------nav----------*/
+    nav {
+      float: left;
+      width: 300px;
+      position: sticky;
+      top: 0.5rem;
+      z-index: 9999;
+      margin-bottom: 0.5rem;
+      grid-area: nav;
+      top: 1.5rem;
+    }
+
+    nav a:active {
+      background-color: #FFB6C1;
+    }
+
+    nav a:visited {
+      color: black;
+      font-size: medium;
+
+    }
+
+    nav ul {
+      text-align: center;
+      padding: 0.5rem 0;
+      display: flex;
+      justify-content: space-evenly;
+      flex-direction: column;
+    }
+
+    nav ul>li {
+      padding-left: 1rem;
+    }
+
+    nav ul>li:not(:last-child) {
+      border-bottom: 1px solid none;
+      padding-bottom: 0.5rem;
+      height: 25px;
+    }
+
+    .banner {
+      height: 10rem;
+      background-image: url("./springpicnic.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      margin: 1.5rem 0;
+      grid-area: banner;
+      box-shadow: 0px 1px 5px black;
+    }
+
+    /*----------article----------*/
+    article {
+      width: calc(100% - 500px - 2rem);
+      float: left;
+      margin: 0 1rem;
+      grid-area: content;
+    }
+
+    article>section>p {
+      text-align: center;
+      font-size: large;
+    }
+
+    /*----------section----------*/
+    section {
+      background-color: #fefae0;
+      padding: 0.25rem 1rem 1rem 1rem;
+      scroll-margin-top: 8rem;
+      margin-bottom: 1rem;
+      float: center;
+    }
+
+    section>h2>a::after {
+      content: "-만개의 레시피에서 보기";
+      font-size: 0.7rem;
+    }
+
+    section>h2 {
+      border-radius: 10px;
+      padding: 0.5rem;
+      margin: 0.5rem;
+      text-align: center;
+      background-color: #FFE4E1;
+    }
+
+    section>h3 {
+      margin-top: 2rem;
+      padding: 0.5rem;
+      border-radius: 10px;
+      border-style: solid;
+      border-width: 0px;
+      text-align: center;
+      background-color: #FFE4E1;
+    }
+
+    section table {
+      border-collapse: collapse;
+    }
+
+    section table td,
+    section table th {
+      border-bottom: 1px solid #FFE4E1;
+      text-align: center;
+      padding: 0.5rem;
+      width: 50%;
+    }
+
+    section table tr:nth-child(2n) {
+      background-color: #FFFFF0;
+      border-radius: 10px;
+    }
+
+    section table th {
+      background-color: #FFF5EE;
+      border-radius: 10px;
+    }
+
+    section ol li:nth-child(1) {
+      background-color: #FFE4E1;
+      border-radius: 10px;
+    }
+
+    section ol li:nth-child(3) {
+      background-color: #FFE4E1;
+      border-radius: 10px;
+    }
+
+    section ol li:nth-child(5) {
+      background-color: #FFE4E1;
+      border-radius: 10px;
+    }
+
+    section ol li:nth-child(7) {
+      background-color: #FFE4E1;
+      border-radius: 10px;
+    }
+
+    section ol li:nth-child(9) {
+      background-color: #FFE4E1;
+      border-radius: 10px;
+    }
+
+    section ol li:nth-child(11) {
+      background-color: #FFE4E1;
+      border-radius: 10px;
+    }
+
+    section ol li:nth-child(13) {
+      background-color: #FFE4E1;
+      border-radius: 10px;
+    }
+
+    section img,
+    section table {
+      width: 100%;
+    }
+
+    aside {
+      width: 200px;
+      float: left;
+      position: sticky;
+      top: 1.5rem;
+      padding: 0.5rem;
+      grid-area: sidebar;
+    }
+
+    aside img:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
+
+    footer {
+      clear: both;
+      grid-area: footer;
+    }
+
+    nav,
+    section,
+    aside {
+      background-color: #fefae0;
+      border-radius: 10px;
+      box-shadow: 0px 1px 5px #bc6c25;
+      height: fit-content;
+    }
+
+    @media (min-width: 576px) {
+      .banner {
+        height: 20vh;
+      }
+    }
+
+    @media (min-width: 768px) {
+      body {
+        width: 700px;
+        margin: 0 auto;
+        grid-template-columns: 2fr 5fr;
+        grid-template-areas:
+          "header   header"
+          "banner   banner"
+          "nav      nav"
+          "sidebar  content"
+          "footeer  footer";
+      }
+
+      @media (min-width: 1280px) {
+        body {
+          width: 1200px;
+          margin: 0 auto;
+          grid-template-columns: 3fr 7fr 2fr;
+          grid-template-areas:
+            "header header  header"
+            "banner banner  banner"
+            "nav    content sidebar"
+            "footer footer  footer"
+        }
+
+        nav ul>li:not(:last-child) {
+          border-bottom: 0;
+          padding-bottom: 0;
+        }
+
+        aside {
+          position: sticky;
+          top: 4.5rem;
+        }
+
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>아이 소풍 센스만점 도시락</h1>
+  </header>
+  <div class="banner">
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#menu-1">&#x261d;오니기라즈-밥샌드위치</a></li>
+      <li><a href="#menu-2">&#x270c;계란 그물 주먹밥</a></li>
+      <li><a href="#menu-3">&#x1F91f;새우베이컨말이</a></li>
+    </ul>
+  </nav>
+  <article>
+    <section id="menu-1">
+      <h2><a href="https://www.10000recipe.com/recipe/6869343" target="_blank">오니기라즈-밥샌드위치</a></h2>
+      <img src="https://recipe1.ezmember.co.kr/cache/recipe/2017/05/05/f51837783594f3149bda9a2f5ee7d6271.jpg">
+      <p> 소풍의 즐거움이 두배가 되는 도시락!
+      </p>
+      <h3><a href="https://www.10000recipe.com/recipe/6869343#divConfirmedMaterialArea" target="_blank">&#x1F449;재료
+          목록&#x1F448;</a></h3>
+      <table>
+        <thead>
+          <tr>
+            <th>재료</th>
+            <th>용량</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>대패 삼겹살</strong></td>
+            <td><em>3줌(원하는 만큼)</em></td>
+          </tr>
+          <tr>
+            <td><strong>대파</strong></td>
+            <td><em>1대</em></td>
+          </tr>
+          <tr>
+            <td><strong>설탕</strong></td>
+            <td><em>1스푼</em></td>
+          </tr>
+          <tr>
+            <td><strong>맛간장</strong></td>
+            <td><em>3큰술</em></td>
+          </tr>
+          <tr>
+            <td><strong>밥</strong></td>
+            <td><em></em></td>
+          </tr>
+          <tr>
+            <td><strong>김밥용김</strong></td>
+            <td><em></em></td>
+          </tr>
+        </tbody>
+      </table>
+      <h3><a href="https://www.10000recipe.com/recipe/6869343##stepDiv1" target="_blank">&#x1F449;조리
+          순서&#x1F448;</a>
+      </h3>
+      <ol>
+        <li>팬에 대패 삼겹살을 올리고 3줌정도~굽고 나면 양이 얼마 안되니 원하는 만큼 넣어주심 될듯 싶어요.
+          저는 덮밥이 아닌 밥 사이에 넣을 거라 사진처럼 삼겹살을 가위로 작게 잘라 구웠습니다.
+        </li>
+        <li>고기가 노릇노릇 익어가며 삼겹살에서 기름이 나와요
+          그럼 대파를 송송 썰어 넣어주고<br>(파채가 있어 저는 파채를 넣었어요)</br>
+        </li>
+        <li>설탕 스푼을 넣고 고루 볶고</li>
+        <li>맛 간장 3~4숟가락을 넣어주세요
+          맛 간장 없으면 진간장 넣어주심 돼요.
+        </li>
+        <li>양념이 잘 베이도록 볶아 마무리
+          고깃간은 짭짜름하게 만들어주세요
+        </li>
+        <li>김밥용 김에 밥을 적당하게 떼어 올리고</li>
+        <li>그 위에 볶아 놓은 대패 삼겹살을 올리고</li>
+        <li>다시 밥으로 덮어주세요.<br>(밥에는 참기름을 살짝 넣었어요)</br>
+        </li>
+        <li>한쪽 면의 김을 접어주고</li>
+        <li>반대쪽도 접어주고</li>
+        <li>위,아래 접어주세요.</li>
+        <li>완성된 밥을 랩으로 꽁꽁 싸주세요.<br>완성된 오니기라즈는 잠시 두고 뒷정리를 합니다.</br>
+        </li>
+        <li>오니기라즈/밥 샌드위치 완성!</li>
+      </ol>
+    </section>
+    <section id="menu-2">
+      <h2><a href="https://www.10000recipe.com/recipe/6868438" target="_blank">계란 그물 주먹밥</a></h2>
+      <img src="https://recipe1.ezmember.co.kr/cache/recipe/2017/04/14/37934b1948262674b5551c673135cd4d1.jpg">
+      <p>맛과 눈에 쏙 들어오는 한입 주먹밥</p>
+      <h3><a href="https://www.10000recipe.com/recipe/6868438#divConfirmedMaterialArea" target="_blank">&#x1F449;재료
+          목록&#x1F448;</a></h3>
+      <table>
+        <thead>
+          <tr>
+            <th>재료</th>
+            <th>용량</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>밥</strong></td>
+            <td><em>1공기하고1/2</em></td>
+          </tr>
+          <tr>
+            <td><strong>고추장</strong></td>
+            <td><em>1/2큰술</em></td>
+          </tr>
+          <tr>
+            <td><strong>굴소스</strong></td>
+            <td><em>1큰술</em></td>
+          </tr>
+          <tr>
+            <td><strong>냉장고 야채들</strong></td>
+            <td><em>조금</em></td>
+          </tr>
+          <tr>
+            <td><strong>올리고당</strong></td>
+            <td><em>1/2큰술</em></td>
+          </tr>
+          <tr>
+            <td><strong>계란</strong></td>
+            <td><em>3개</em></td>
+          </tr>
+          <tr>
+            <td><strong>소금</strong></td>
+            <td><em>약간</em></td>
+          </tr>
+          <tr>
+            <td><strong>소스통</strong></td>
+            <td><em>1개</em></td>
+          </tr>
+        </tbody>
+
+      </table>
+      <h3><a href="https://www.10000recipe.com/recipe/6868438#stepDiv1" target="_blank">&#x1F449;조리 순서&#x1F448;</a></h3>
+      <ol>
+        <li>야채들 잘게 다져서 분량의 양념을 밥과 함께 볶아주세요.</li>
+        <li>다이소에서 소스통을 구매해줍니다.</li>
+        <li>소스통안에 계란물을 넣어주고, 일단 프라이팬을 달구어주세요.<br>초스피드로 그물을 그려주어야 해서 팬에 온도를 적당하게 주는 것도 포인트인 거 같아요.</br>
+        </li>
+        <li>오일을 살짝만 두르고 그물을 그리기 시작해요.<br>이쁘게 나온 그물을 고른후, 손으로 주먹밥을 만들고 그물로 감싸주세요.<br>
+        </li>
+        <li>계란그물이 뜨거우면 밥을 말기 어렵고, 그물이 망가질 수 있으니 살짝 식혀주면 좋아요.</li>
+        <li>적당한 오일양과 섬세하게 말아주면 완성!</li>
+      </ol>
+    </section>
+    <section id="menu-3">
+      <h2><a href="https://www.10000recipe.com/recipe/6865390" target="_blank">새우베이컨말이</a></h2>
+      <img src="https://recipe1.ezmember.co.kr/cache/recipe/2017/02/16/dc5682bb10aa7f76a482250130bc9b6a1.jpg">
+      <p>짭쪼름한 베이컨과 담백한 새우의 만남</p>
+      <h3><a href="https://www.10000recipe.com/recipe/6865390#divConfirmedMaterialArea" target="_blank">&#x1F449;재료
+          목록&#x1F448;</a></h3>
+      <table>
+        <thead>
+          <tr>
+            <th>재료</th>
+            <th>용량</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>새우</strong></td>
+            <td><em>7마리</em></td>
+          </tr>
+          <tr>
+            <td><strong>긴 베이컨</strong></td>
+            <td><em>4줄</em></td>
+          </tr>
+        </tbody>
+
+      </table>
+      <h3><a href="https://www.10000recipe.com/recipe/6865390#stepDiv1" target="_blank">&#x1F449;조리 순서&#x1F448;</a></h3>
+      <ol>
+        <li>새우는 꼬리만 남겨두고 껍질을 까서 준비해주세요.<br>긴 베이컨은 1/2등분하고, 짧은 베이컨은 하나 모두 사용해주세요.</br></li>
+        <li>베이컨을 말아 구우면 새우가 굽어서 잘 풀릴 수 있기 때문에 배에 칼집을 2~3번 내주세요.</li>
+        <li>1/2등분한 베이컨 위에 새우를 올려주세요.</li>
+        <li>돌돌 예쁘게 말아주세요.</li>
+        <li>새우 베이컨말이는 새우의 꼬리부분이 아래로 향하게 해주세요.</li>
+        <li>팬에 기름을 넉넉히 두른 후 키친타월로 한번 닦아주세요.</li>
+        <li>예쁘게 말아진 새우 베이컨말이를 나란히 올려 주세요.</li>
+        <li>수저를 이용해 한번씩 꾹꾹 가볍게 눌러주세요.</li>
+        <li>밑면이 잘 익어가면 윗면, 옆면 골고루 굴려가며 익혀주세요.</li>
+        <li>새우가 붉어지고 베이컨도 노릇해졌다 싶을때 꺼내서 키친타월 위에서 기름을 빼주세요.</li>
+        <li>완성된 간단한 도시락 반찬, 새우 베이컨말이예요.</li>
+      </ol>
+    </section>
+
+  </article>
+  <aside>
+    <img
+      src="https://post-phinf.pstatic.net/MjAxNzA0MjBfMTUz/MDAxNDkyNjY4MzQwMjgz.ZJsPhjT5BtsxykaTegxTbZI95ptBZXgBkFichCxdYqgg.zkUUr62CP31a42uli34O3vqIjj5FyFddYjhc23yQOPsg.JPEG/0_%EA%B0%80%EB%A1%9C%ED%98%95.jpg?type=w1200"
+      width="100%">
+    <img
+      src="http://www.knnews.co.kr/core_board2007/webnote/upload/_quick/2016/04/07/c87c390a488ce8a_14600306591998304221.jpg"
+      width="100%">
+    <img src="https://t1.daumcdn.net/cfile/tistory/270A2B4F591342FB0E" width="100%">
+    <img
+      src="https://lh3.googleusercontent.com/proxy/_mgVlbjQb6d7JOVZ_vmcSQnX8VEKboJ5bcrXdpUotiOHkwUJEJ0OtKXa194UoF2W2CXTLiuzZV_OVoDKAoo7MNc_xAGS3g2mapiR7OT29lQcVeShtZE_Hw"
+      width="100%">
+  </aside>
+
+  <footer>
+  </footer>
+</body>
+
+</html>
