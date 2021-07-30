@@ -1,0 +1,25 @@
+Media Query
+query : 질의어 > 물어보는말
+
+@media screen and(min-width:576px) {
+
+}
+
+ViewPort
+<meta name="viewport" content="width=device-width; initial-scale=1">
+						초기배율=1로한다.
+
+크기값 VW, VH
+VW(viewport width) > 뷰포트 가로 대비 비율
+VH(viewport height) > 뷰포트 세로 대비 비율
+
+절대크기 px
+상대크기 %, [em, rem(폰트 크기)], [vh, vw(뷰포트 크기)]
+
+vuerify 
+
+breakpoints
+미디어쿼리를 적용할 화면 크기 기준
+
+grid 2차원배치
+Fragment(조각)
