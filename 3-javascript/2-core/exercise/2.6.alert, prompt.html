@@ -7,8 +7,17 @@
 
     // alert 및 back-quote 문자열로 출력하기
     // 예) 안녕하세요. {이름} 님
-    let Name = prompt('당신의 이름은 무엇입니까?');
-    alert(`안녕하세요. ${Name}님 반갑습니다.`);
+    // let Name = prompt('당신의 이름은 무엇입니까?');
+    // alert(
+    //   `안녕하세요.
+    // ${Name}님
+    // 반갑습니다.
+    // `);
+
+    const userName = prompt("이름을 입력해주세요.");
+    // \n : new-line
+    const message = `안녕하세요. \n[${userName}]님`;
+    alert(message);
   </script>
 </body>
 
