@@ -1,0 +1,13 @@
+<html>
+
+<body>
+  <script>
+    if (-1 || 0) alert('first');  // -1 true 이므로 first
+    if (-1 && 0) alert('second'); // 0 false 이므로 안뜬다
+    if (null || -1 && 1) alert('third');
+    // null || 1 -> 이므로 true third
+    // 결과 first, third
+  </script>
+</body>
+
+</html>

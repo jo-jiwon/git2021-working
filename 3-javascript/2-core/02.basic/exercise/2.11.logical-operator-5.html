@@ -1,0 +1,13 @@
+<html>
+
+<body>
+  <script>
+    alert(null || 2 && 3 || 4);
+    // 1단계: null - false
+    // 2단계: 2 && 3 - true
+    // 3단계: (null || 3 || 4)
+    // 결과: 3
+  </script>
+</body>
+
+</html>
