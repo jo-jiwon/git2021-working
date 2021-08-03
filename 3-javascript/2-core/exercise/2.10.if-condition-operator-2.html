@@ -2,12 +2,22 @@
 
 <body>
   <script>
-    let javascript = prompt("자바스크립트의 '공식' 이름은 무엇일까요?")
+    // let javascript = prompt("자바스크립트의 '공식' 이름은 무엇일까요?")
 
-    if (javascript == ECMAScipt) {
-      alert('정답입니다!');
+    // if (javascript == ECMAScipt) {
+    //   alert('정답입니다!');
+    // } else {
+    //   alert("틀렸습니다.");
+    // }
+
+    // 1. 프롬프트 띄우기
+    const msg = `What's the \“official\” name of JavaScript?`;
+    const answer = prompt(msg);
+
+    if (answer.toLowerCase() === "ecmascript") {
+      alert("right");
     } else {
-      alert("틀렸습니다.");
+      alert(`You don't know? “ECMAScript”!`);
     }
   </script>
 </body>
