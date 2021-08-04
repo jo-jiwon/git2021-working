@@ -2,7 +2,12 @@
 
 <body>
   <script>
-    let age = prompt('나이를 입력해주세요.');
+    // 경계값 테스트(boundary-value test)
+    // 경계 부분의 값이 오류 발생할 확률이 높음
+    // ex) 13, 14, 90, 91... 주변값
+    let age = 30;
+
+    // age is greater-equals than 14 and less-equals than 90
     if (age >= 14 && age <= 90) {
       alert("나이가 포함이 됩니다.")
     };

@@ -2,16 +2,23 @@
 
 <body>
   <script>
-    let login = prompt("Who's there?");
-    if (login == 'Admin') {
-      let pw = prompt('비밀번호');
-      if (pw = 'TheMaster') {
-        alert("Welcome!");
-      } else if (pw == '' || null) {
-        alert('Cancel');
+    let userName = prompt("Who's there?");
+
+    if (userName == "Admin") {
+      let password = prompt("password?");
+
+      if (password == "TheMaster") {
+        alert("welcome!");
+      } else if (password == null || '') {
+        alert("Canceled");
+      } else {
+        alert("Wrong password");
       }
+    } else if (userName == null || '') {
+      alert("Canceled");
+    } else {
+      alert("I don't know you");
     }
-    // 대기
   </script>
 </body>
 
