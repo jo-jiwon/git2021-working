@@ -1,0 +1,26 @@
+<html>
+
+<body>
+  <script>
+    let n = 5;
+    for (let i = 1; i <= n; i++) {
+      let blank = "";
+
+      // 공백
+      // j가 5 - 1,2,3,4,5 보다 작을대 공백을 실행해라
+      for (let j = 0; j < n - i; j++) {
+        // 이때 여백은 여백+여백으로 출력
+        blank = blank + " ";
+      }
+      // 별
+      // 1*2-1 = 1, 2*2-1 = 3 ... 5, 7, 9
+      for (let k = 0; k < i * 2 - 1; k++) {
+        // 이때 여백은 여백+별로 출력
+        blank = blank + "*";
+      }
+      console.log(blank);
+    }
+  </script>
+</body>
+
+</html>
