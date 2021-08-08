@@ -2,11 +2,15 @@
 
 <body>
   <script>
-    //const birthday = '18.04.1982'; // 대문자 상수로 바꿔도 괜찮을가요?
-    //const age = someCode(birthday); // 대문자 상수로 바꿔도 괜찮을가요?
+    const birthday = '18.04.1982';
 
-    const BIRTHDAY = '18.04.1982';
-    const age = someCode(BIRTHDAY);
+    const age = someCode(birthday);
+
+    // 대문자 상수로 바꿔도 괜찮을까요?
+    const BIRTHDAY = '18.04.1982';  // 네
+
+    // 대문자 상수로 바꿔도 괜찮을까요?
+    const AGE = someCode(BIRTHDAY); // 네
   </script>
 </body>
 
