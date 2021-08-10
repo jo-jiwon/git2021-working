@@ -1,0 +1,57 @@
+<html>
+
+<body>
+  <script>
+    let style = [];
+    style.push("Jazz");
+    style.push("Blues");
+
+    console.log(style);               // 1번
+
+    style.push("Rock-n-Roll");
+    console.log(style);               // 2번
+
+    style[1] = "Classics"
+    console.log(style);               // 3번
+
+    // shift은 배열 맨 앞에 요소를 제거함
+    // pop은 배열 맨 뒤에 요솔를 제거함
+    style.shift();
+    console.log(style);               // 4번
+
+    // 배열 맨 앞에 요소를 추가함
+    style.unshift("Rap", "Reggae");
+    console.log(style);               // 5번
+
+
+    // 강사님 풀이
+
+    // 1. 배열생성
+    let styles = ["jazz", "blues"];
+    console.log(styles);
+    // 2. 배열 끝에 추가
+    styles.push("rock-n-roll");
+    console.log(styles);
+    // 3. 배열 중간 요소 바꾸기
+    styles[Math.floor((styles.length - 1) / 2)] = "classics";
+    console.log(styles);
+
+    // 4. 배열 첫번째 요소 꺼내기
+    console.log(styles.shift());
+    console.log(styles);
+
+    // 5. 배열의 앞쪽에 추가 (unshift)
+    for (let addItem of ["raggae", "rap"]) {
+      styles.unshift(addItem);
+    }
+    console.log(styles);
+
+    // 5-1. 배열 앞치기 뒤에 나옴
+    // 배열.concat(배열1, 배열2....)
+    // 합쳐진 새로운 배열을 반환함
+    styles = ["rap", "raggae"].concat(styles);
+    console.log(styles);
+  </script>
+</body>
+
+</html>
