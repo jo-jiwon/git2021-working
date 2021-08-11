@@ -1,8 +1,15 @@
 <html>
   <body>
     <script>
-      ucFirst("john") == "John";
-      function str() {}
+      // str의 첫 글자를 대문자로 바꿔 반환하는 함수, ucFirst(str)를 만들어보세요.
+      // 함수 실행 결과는 아래 예시를 충족해야 합니다.
+
+      function ucFirst(str) {
+        // 첫번째 글자를 대문자로 + 두번째 글자부터 마지막 글자까지 자름
+        return str[0].toUpperCase() + str.substr(1);
+      }
+
+      console.log(ucFirst("john"));
     </script>
   </body>
 </html>
