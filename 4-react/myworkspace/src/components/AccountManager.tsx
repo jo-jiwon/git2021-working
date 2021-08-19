@@ -10,46 +10,30 @@ import { useState } from "react";
 // 총액: 잔액을 입금, 출금 버튼 우측에 표시한다
 
 const AccountManager = () => {
-  const [rest, srest] = useState(0);
-  const btnclick = () => {
-    const c = prompt("금액");
-    srest(eval(`${c}`));
+  const [result, setResult] = useState(0);
+  // 입금 버튼 prompt 생성
+  const deposit = () => {
+    const a = prompt("입금할 금액을 입력해 주세요!",'');
+    setResult(eval(`${a}`));
   }
-  const btnclick2 = () => {
-    const d = prompt("금액");
-    srest(eval(`${d}`));
+
+  // 출금 버튼 prompt 생성
+  const withdraw = () => {
+    const b = prompt("출금할 금액을 입력해 주세요!",'');
+    setResult(eval(`${b}`));
   }
+  
+
   return (
-  <div>
-    <h2>Account Manager</h2>
-    <button onClick={() => {
-      btnclick();
-    }}
-    >입금
-    </button>
-    <button onClick={()=> {
-      btnclick2();
-    }}
-    >
-      입금
-    </button>
-    <ul>
-      {
-    rest.map((num, index) =>
-      num < 0 ? (
-        <li> style={{color: "green"}} key={index}>
-          입금:{rest}
-        </li>
-      ) : (
-        <li style={{color: "red"}} key={index}>
-          출금:{rest}
-        </li>
-      )
-    )
-  }
-    </ul>
-    
-  </div>
+    <div>
+      <h2>Account Manager</h2>
+      <button style={{color:"green"}} onClick={deposit}>입금</button>
+      <button style={{color:"red"}}onClick={withdraw}>출금</button>
+      <div>{result}</div>
+      <ul>
+  
+      </ul>
+    </div>
   )
 }
 export default AccountManager;

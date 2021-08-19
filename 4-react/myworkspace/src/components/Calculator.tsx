@@ -22,16 +22,16 @@ const Calculator = () => {
   const [result, setResult] = useState(0);
   const calculate = () => {
     const a = prompt("첫번째 숫자");
-    const b = prompt("두번째 숫자");
-    const op = prompt("연산자, (+,-,*,/)");
+    // const b = prompt("두번째 숫자");
+    // const op = prompt("연산자, (+,-,*,/)");
 
-    console.log(`${a}${op}${b}`);
+    console.log(`${a}`);
 
     // eval(문자열)
     // 문자열이 자바스크립트코드로 실행할 수 있으면 실행
     // const code = `alert(${a}${op}${b})`
     // eval(code);
-    setResult(eval(`${a}${op}${b}`));
+    setResult(eval(`${a}`));
   };
 
   // state 값에 변동이 없으면 컴포넌트 업데이트 안함
