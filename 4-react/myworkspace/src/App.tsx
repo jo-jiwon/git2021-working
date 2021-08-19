@@ -1,8 +1,3 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-
 // JSX: Javascript 기반의 HTML 태그 형식
 // 각각의 태그(element)들은 javascript 객체임
 // 일반적인 html 태그 표기법과 다름
@@ -48,23 +43,44 @@ import './App.css';
 // JS함수인데, JSX Element를 반환함 == Component
 // 리액트에서 컴포넌트는 JSX Element를 렌더링하는 함수
 
+import { title } from "process";
+
+import Header from "./components/Header";
+import Button from "./components/Button";
+import Counter from "./components/Counter";
+import { BUILDER_KEYS } from "@babel/types";
+import Calculator from "./components/Calculator";
+import Generator from "./components/Generator";
+import AccountManager from "./components/AccountManager";
+// React == 컴포넌트 개발 라이브러리
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    // main container
+    <div style={{ width: "500px", margin: "0 auto" }}>
+      {/* JSX내부에서 주석달기 */}
+      {/* 재사용하지 않는 컴포넌트 */}
+      {/* <h1 style={{ color: "red" }}>Hello React with Typescript !</h1> */}
+
+      {/* 속성값을 변경하여 재사용하는 컴포넌트 */}
+      {/* Component의 속성 (prop)을 넘김 */}
+      {/* 속성명={속성값} */}
+      <Header color={"red"} title={"React"} />
+      <Header color={"green"} title={"React"} />
+      <Header color={"blue"} title={"Function Component"} />
+
+      {/* <Button color={"white"} backgroundColor={"blue"} text={"Add"} />
+      <Button color={"black"} backgroundColor={"red"} text={"Delete"} />
+      <Button color={"white"} backgroundColor={"green"} text={"Done"} /> */}
+
+      <Button variant={"primary"} text={"Add"} />
+      <Button variant={"secondary"} text={"Delete"} />
+      <Button variant={"warning"} text={"Done"} />
+
+      <Counter />
+      <Calculator />
+      <Generator />
+
+      <AccountManager />
     </div>
   );
 }
