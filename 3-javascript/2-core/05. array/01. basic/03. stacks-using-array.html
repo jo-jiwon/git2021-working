@@ -15,9 +15,9 @@
     stack.push('/list');  //  목록조회 화면 방문
     stack.push('/detail/3'); // 게시글 번호가 3인 게시물 상세 조회
 
-    console.log(stack(pop));  // detail/3
-    console.log(stack(pop));  // list
-    console.log(stack(pop));  // home
+    console.log(stack.pop());  // detail/3
+    console.log(stack.pop());  // list
+    console.log(stack.pop());  // home
 
     // 스택의 크기
     console.log(stack.length);
@@ -26,9 +26,9 @@
     console.log(stack[1]);
 
     // 스택의 요소 추출
-    console.log(stack(pop));  // detail/3
-    console.log(stack(pop));  // list
-    console.log(stack(pop));  // home
+    console.log(stack.pop());  // detail/3
+    console.log(stack.pop());  // list
+    console.log(stack.pop());  // home
   </script>
 </body>
 

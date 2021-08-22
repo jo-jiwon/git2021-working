@@ -13,7 +13,9 @@
     // let admin = {} -> 새로운 객체 생성
     // { ...user } -> 새로운 객체에 모든 속성과 값을 나열함
     // let admin = { name: user.name, age: user.age };
+    // let admin = Object.assign({},user)
     let admin = { ...user };
+    
 
     // 이제 admin은 완전히 독립적인 복제본이 되었습니다.
     admin.name = "Pete"; // admin의 데이터를 변경합니다.

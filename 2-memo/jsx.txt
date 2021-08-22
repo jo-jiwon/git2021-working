@@ -1,0 +1,45 @@
+Stateful Component
+ - 상태관리 필요한 컴포넌트
+ - 내부에 state로 특정시점에 다시 렌더링
+ - class component로 작성
+
+Stateless Component
+ - 상태관리 필요하지 않은 컴포넌트
+ - props만 받아서 렌더링 하는것
+ - function component로 작
+ - 상태관리, 라이프사이클처리 안 됨
+    -> React Hook 16.8에서 되게 만듦
+
+----------------------------------------------
+
+React 컴포넌트가 재렌더링 되는 케이스
+ - state가 변경됐을 때
+ - props가 변경됐을 때
+ - 부모 컴포넌트가 다시 렌더링 될 때
+   App > Generator > ListItem
+         state변경
+          -> re-render ->
+ - key 속성이 변경됐을 때
+   -> prop, state 그대로인데 다시 렌더링만 해야함
+      -> key 속성의 값을 바꿔야함
+         -> 1개짜리 컴포넌트는 상관없으나
+            반복문으로 표현되는 컴포넌트에는 key가 필요함
+
+
+실제로 렌더링은 1회만 일어남
+ -> 렌더링 주기에 따라서 1회만 일어남
+
+----------------------------------------------
+
+바인딩(binding): 연결한다
+Data(변수) -> UI(JSX)
+: 변수를 변경하면 JSX가 변경됨
+
+SPA(Single Page Application)
+: 페이지 파일이 1개, index.html
+: 특정 역역에 컴포넌트 (js)를 로딩함
+: 애플리케이션 처음 로딩될 때 import 한 모두 컴포넌트를 로딩함
+  -> 컴파일 됐을 떄 파일크기가 커짐, 초기 로딩할 때 시간 걸림
+
+Lazy-loading
+컴포넌트를 방문 할때 로딩을 해옴
