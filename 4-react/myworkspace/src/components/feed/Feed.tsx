@@ -98,6 +98,7 @@ const Feed = () => {
           item.memo = editItem.memo;
           item.dataUrl = editItem.dataUrl;
           item.createTime = editItem.createTime;
+          item.fileType = editItem.fileType;
         }
       })
     );
