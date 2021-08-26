@@ -29,6 +29,9 @@ const Counter = () => {
     setCount(count + 1);
   };
 
+  const decrease = () => {
+    setCount(count - 1);
+  };
   return (
     <div>
       <h2>Counter</h2>
@@ -39,7 +42,14 @@ const Counter = () => {
             increase();
           }}
         >
-          COUNT
+          증가
+        </button>
+        <button
+          onClick={() => {
+            decrease();
+          }}
+        >
+          감소
         </button>
         <span>{count}</span>
       </div>

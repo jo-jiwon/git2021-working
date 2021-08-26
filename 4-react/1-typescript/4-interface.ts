@@ -24,7 +24,7 @@ function printName(obj: User) {
 // number[], string[], User[]
 function printNames(arr: User[]) {
   for (let obj of arr) {
-    // console.log(obj.firstname + " " + obj.lastname);
+    console.log(obj.firstname + " " + obj.lastname);
   }
 }
 
