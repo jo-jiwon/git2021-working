@@ -1,6 +1,4 @@
 import React, { useRef, useState } from "react";
-import { Redirect } from "react-router-dom";
-import { classicNameResolver, isTemplateExpression } from "typescript";
 
 import produce from "immer";
 

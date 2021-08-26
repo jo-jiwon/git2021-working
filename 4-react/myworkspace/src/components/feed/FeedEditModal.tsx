@@ -15,7 +15,7 @@ interface ModalProp {
 
 const FeedEditModal = ({ item, onClose, onSave }: ModalProp) => {
   const textRef = useRef<HTMLTextAreaElement>(null);
-  const fileRef = useRef<HTMLInputElement>(null); // 수정★
+  const fileRef = useRef<HTMLInputElement>(null);
 
   const save = () => {
     if (fileRef.current?.files?.length) {
@@ -23,7 +23,7 @@ const FeedEditModal = ({ item, onClose, onSave }: ModalProp) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        // 2. 피드추가
+        // 부모컴포넌트에 event-up할 새로운 함수
         const feed: FeedState = {
           id: item.id,
           memo: textRef.current?.value,

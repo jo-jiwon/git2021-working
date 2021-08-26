@@ -76,7 +76,6 @@ const Feed = () => {
   const editItem = useRef<FeedState>({
     id: 0,
     memo: "",
-
     createTime: 0,
     dataUrl: "",
     fileType: "",
@@ -95,6 +94,7 @@ const Feed = () => {
       produce((state) => {
         const item = state.find((item) => item.id === editItem.id);
         if (item) {
+          // FeedEditMomal 자식컴포넌트에서 event-up 할것들
           item.memo = editItem.memo;
           item.dataUrl = editItem.dataUrl;
           item.createTime = editItem.createTime;
