@@ -105,7 +105,7 @@ const Feed = () => {
     setIsEdit(false);
   };
   return (
-    <>
+    <div style={{ width: "40vw" }} className="mx-auto">
       <h2 className="text-center my-5">Feed</h2>
       {isEdit && (
         <FeedEditModal
@@ -199,7 +199,7 @@ const Feed = () => {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -7,7 +7,7 @@ import "./App.scss";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Suspense, lazy } from "react";
 
-import Home from "./components/Home";
+import Home from "./domain/Home";
 
 // SPA(Single Page Application)
 // : 페이지 파일이 1개, index.html
@@ -17,28 +17,27 @@ import Home from "./components/Home";
 
 // Lazy-Loading 처리
 // 컴포넌트를 방문하는 시점에 로딩함
-// const Counter = lazy(() => import("./components/Counter"));
-// const Calculator = lazy(() => import("./components/CalculatorRef"));
-// const Generator = lazy(() => import("./components/Generator"));
-// const AccountManager = lazy(() => import("./components/AccountManagerRef"));
-// const Components = lazy(() => import("./components/Components"));
-// const BootStrap = lazy(() => import("./components/Bootstrap"));
-// const Todo = lazy(() => import("./components/Todo"));
-const Todo = lazy(() => import("./components/todo/Todo"));
-const Feed = lazy(() => import("./components/feed/Feed"));
-const Contact = lazy(() => import("./components/contact/Contact"));
-// const Feed_1 = lazy(() => import("./components/Feed_1"));
+// const Counter = lazy(() => import("./domain/Counter"));
+// const Calculator = lazy(() => import("./domain/CalculatorRef"));
+// const Generator = lazy(() => import("./domain/Generator"));
+// const AccountManager = lazy(() => import("./domain/AccountManagerRef"));
+// const Components = lazy(() => import("./domain/Components"));
+// const BootStrap = lazy(() => import("./domain/Bootstrap"));
+// const Todo = lazy(() => import("./domain/Todo"));
+const Todo = lazy(() => import("./domain/todo/Todo"));
+const Feed = lazy(() => import("./domain/feed/Feed"));
 
+// const Feed_1 = lazy(() => import("./components/Feed_1"));
+const Contact = lazy(() => import("./domain/Contact_조지원"));
 // React == 컴포넌트 개발 라이브러리
 function App() {
   return (
     <Router>
       {/* main container */}
-      <div style={{ width: "700px" }} className="mx-auto">
-        <nav
-          style={{ width: "200px", height: "100vh", top: "20px" }}
-          className="position-fixed"
-        >
+      <div className="mx-auto">
+        <header className="bg-primary app-bar shadow">App Bar</header>
+        <nav className="position-fixed bg-light shadow-sm draw-menu">
+          <h3>My WorkSpace</h3>
           <ul>
             <li>
               <Link to="/">Home</Link>
@@ -50,14 +49,14 @@ function App() {
               <Link to="/feeds">Feeds</Link>
             </li>
             <li>
-              <Link to="/contact">Feeds</Link>
+              <Link to="/contact">Contact</Link>
             </li>
             {/* <li>
               <Link to="/feed_1">Feed_1</Link>
             </li> */}
           </ul>
         </nav>
-        <main style={{ marginLeft: "200px", marginTop: "20px" }}>
+        <main className="content-container">
           {/* Suspense 컴포넌트로 로딩중에 보여줄 화면을 처리하는 것 */}
           {/* fallback={로딩중에 보여줄 컴포넌트} */}
           <Suspense fallback={<div>Loading...</div>}>
