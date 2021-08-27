@@ -35,7 +35,6 @@ const Feed = () => {
         const feed: FeedState = {
           id: feedList.length > 0 ? feedList[0].id + 1 : 1,
           memo: textRef.current?.value,
-
           createTime: new Date().getTime(),
           dataUrl: reader.result?.toString(),
           fileType: reader.result?.toString(),

@@ -21,9 +21,9 @@ const FeedEditModal = ({ item, onClose, onSave }: ModalProp) => {
     if (fileRef.current?.files?.length) {
       const file = fileRef.current?.files[0];
       const reader = new FileReader();
-      reader.readAsDataURL(file);
       reader.onload = () => {
-        // 부모컴포넌트에 event-up할 새로운 함수
+        // 부모컴포넌트에 event-up할 새로운 객체들
+        // 메모, 업로드시간, dataurl, 이미지/동영상변경을 위한 filetype
         const feed: FeedState = {
           id: item.id,
           memo: textRef.current?.value,
@@ -33,6 +33,7 @@ const FeedEditModal = ({ item, onClose, onSave }: ModalProp) => {
         };
         onSave(feed);
       };
+      reader.readAsDataURL(file);
     }
   };
   return (

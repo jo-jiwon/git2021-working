@@ -26,6 +26,7 @@ import Home from "./components/Home";
 // const Todo = lazy(() => import("./components/Todo"));
 const Todo = lazy(() => import("./components/todo/Todo"));
 const Feed = lazy(() => import("./components/feed/Feed"));
+const Contact = lazy(() => import("./components/contact/Contact"));
 // const Feed_1 = lazy(() => import("./components/Feed_1"));
 
 // React == 컴포넌트 개발 라이브러리
@@ -48,6 +49,9 @@ function App() {
             <li>
               <Link to="/feeds">Feeds</Link>
             </li>
+            <li>
+              <Link to="/contact">Feeds</Link>
+            </li>
             {/* <li>
               <Link to="/feed_1">Feed_1</Link>
             </li> */}
@@ -64,6 +68,7 @@ function App() {
               <Route path="/" component={Home} exact />
               <Route path="/todo" component={Todo} />
               <Route path="/feeds" component={Feed} />
+              <Route path="/contact" component={Contact} />
               {/* <Route path="/feed_1" component={Feed_1} /> */}
               {/* <Route path="/components" component={Components} />
               <Route path="/counter" component={Counter} />
