@@ -5,6 +5,9 @@ import produce from "immer";
 import FeedEditModal from "./FeedEditModal";
 // ./type.ts/js/tsx가 없으면, ./type/index.ts/js/tsx 로딩함
 import { FeedState } from "./type";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { url } from "inspector";
 
 // // 날짜/시간
 const getTimeString = (unixtime: number) => {
@@ -13,6 +16,8 @@ const getTimeString = (unixtime: number) => {
 };
 
 const Feed = () => {
+  const profile = useSelector((state: RootState) => state.profile);
+
   //state 생성
   const [feedList, setFeedList] = useState<FeedState[]>([]);
 
@@ -34,6 +39,8 @@ const Feed = () => {
         // 2. 피드추가
         const feed: FeedState = {
           id: feedList.length > 0 ? feedList[0].id + 1 : 1,
+          username: profile.username,
+          image: profile.image,
           memo: textRef.current?.value,
           createTime: new Date().getTime(),
           dataUrl: reader.result?.toString(),
@@ -75,11 +82,14 @@ const Feed = () => {
   const editItem = useRef<FeedState>({
     id: 0,
     memo: "",
+    username: "",
+    image: "",
     createTime: 0,
     dataUrl: "",
     fileType: "",
   });
 
+  // 수정
   const edit = (item: FeedState) => {
     // 수정할 feed객체
     editItem.current = item;
@@ -87,6 +97,7 @@ const Feed = () => {
     setIsEdit(true);
   };
 
+  // 저장
   const save = (editItem: FeedState) => {
     console.log(editItem);
     setFeedList(
@@ -153,6 +164,16 @@ const Feed = () => {
       <div className="mt-3 mb-3">
         {feedList.map((item) => (
           <div className="card mt-1" key={item.id}>
+            <div className="card-header d-flex">
+              <div
+                className="thumb me-1"
+                style={{ backgroundImage: `url(${item.image})` }}
+              />
+              <span className="feed-username">{item.username}</span>
+              <span style={{ fontSize: "0.75rem" }}>
+                {getTimeString(item.createTime)}
+              </span>
+            </div>
             {item.fileType &&
               (item.fileType?.includes("image") ? (
                 <img

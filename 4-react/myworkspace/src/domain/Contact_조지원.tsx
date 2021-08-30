@@ -16,15 +16,16 @@ const Contact = () => {
 
   const formRef = useRef<HTMLFormElement>(null);
   const inputNameRef = useRef<HTMLInputElement>(null);
-  const inputNumRef = useRef<HTMLInputElement>(null);
+  const inputPhoneRef = useRef<HTMLInputElement>(null);
   const inputEmailRef = useRef<HTMLInputElement>(null);
+  const tbodyRef = useRef<HTMLTableSectionElement>(null);
 
   // 추가
   const add = () => {
     const contact: ContactState = {
       id: contactList.length > 0 ? contactList[0].id + 1 : 1,
       name: inputNameRef.current?.value,
-      phone: inputNumRef.current?.value,
+      phone: inputPhoneRef.current?.value,
       email: inputEmailRef.current?.value,
     };
     setContactList(
@@ -56,6 +57,28 @@ const Contact = () => {
       })
     );
   };
+
+  // 저장
+  const save = (id: number) => {
+    const input[] = tbodyRef.current?.querySelectorAll("input")
+    // 몇번째 tr에 3가지 input을 선택함
+    // const inputN = tbodyRef.current?.querySelectorAll("input")[0];
+    // const inputP = tbodyRef.current?.querySelectorAll("input")[1];
+    // const inputE = tbodyRef.current?.querySelectorAll("input")[2];
+
+    setContactList(
+      produce((state) => {
+        const item = state.find((item) => item.id === id);
+        if (item) {
+          item.name = input[0]?.value;
+          item.phone = input[1]?.value;
+          item.email = input[2]?.value;
+          item.isEdit = false;
+        }
+      })
+    );
+  };
+
   return (
     <>
       <h2 className="text-center my-5">연락처 관리</h2>
@@ -70,7 +93,7 @@ const Contact = () => {
           type="text"
           className="form-control me-1"
           placeholder="전화번호"
-          ref={inputNumRef}
+          ref={inputPhoneRef}
         />
         <input
           type="text"
@@ -99,53 +122,81 @@ const Contact = () => {
             <th scope="col">작업</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody ref={tbodyRef}>
           {contactList.map((item, index) => (
             <tr key={item.id}>
+              {/* 보기모드일때 */}
+              {!item.isEdit && <td>{item.id}</td>}
+              {!item.isEdit && <td>{item.name}</td>}
+              {!item.isEdit && <td>{item.phone}</td>}
+              {!item.isEdit && <td>{item.email}</td>}
+              {/* 수정모드일때 */}
+              {item.isEdit && <td>{item.id}</td>}
+              {item.isEdit && (
+                <td>
+                  <input type="text" defaultValue={item.name} />
+                </td>
+              )}
+              {item.isEdit && (
+                <td>
+                  <input type="text" defaultValue={item.phone} />
+                </td>
+              )}
+              {item.isEdit && (
+                <td>
+                  <input type="text" defaultValue={item.email} />
+                </td>
+              )}
+              {/* 보기모드일때 */}
               {!item.isEdit && (
-                <tr>
-                  <td>{item.name}</td>
-                  <td>{item.phone}</td>
-                  <td>{item.email}</td>
-                </tr>
+                <td>
+                  <button
+                    className="btn btn-outline-secondary btn-sm text-nowrap"
+                    onClick={() => {
+                      edit(item.id, true);
+                    }}
+                  >
+                    수정
+                  </button>
+                </td>
+              )}
+              {!item.isEdit && (
+                <td>
+                  <button
+                    className="btn btn-outline-secondary btn-sm text-nowrap"
+                    onClick={() => {
+                      del(item.id, index);
+                    }}
+                  >
+                    삭제
+                  </button>
+                </td>
+              )}
+              {/* 수정모드일때 */}
+              {item.isEdit && (
+                <td>
+                  <button
+                    className="btn btn-outline-secondary btn-sm text-nowrap"
+                    onClick={() => {
+                      save(item.id);
+                    }}
+                  >
+                    저장
+                  </button>
+                </td>
               )}
               {item.isEdit && (
-                <input type="text" className="w-100" defaultValue={item.name} />
+                <td>
+                  <button
+                    className="btn btn-outline-secondary btn-sm text-nowrap"
+                    onClick={() => {
+                      edit(item.id, false);
+                    }}
+                  >
+                    취소
+                  </button>
+                </td>
               )}
-              {item.isEdit && (
-                <input
-                  type="text"
-                  className="w-100"
-                  defaultValue={item.phone}
-                />
-              )}
-              {item.isEdit && (
-                <input
-                  type="text"
-                  className="w-100"
-                  defaultValue={item.email}
-                />
-              )}
-              <td>
-                <button
-                  className="btn btn-outline-secondary btn-sm text-nowrap"
-                  onClick={() => {
-                    edit(item.id, true);
-                  }}
-                >
-                  수정
-                </button>
-              </td>
-              <td>
-                <button
-                  className="btn btn-outline-secondary btn-sm text-nowrap"
-                  onClick={() => {
-                    del(item.id, index);
-                  }}
-                >
-                  삭제
-                </button>
-              </td>
             </tr>
           ))}
         </tbody>

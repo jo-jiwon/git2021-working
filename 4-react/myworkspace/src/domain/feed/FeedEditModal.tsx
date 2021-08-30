@@ -1,3 +1,4 @@
+import { profile } from "console";
 import { useRef } from "react";
 
 import { FeedState } from "./type";
@@ -27,6 +28,8 @@ const FeedEditModal = ({ item, onClose, onSave }: ModalProp) => {
         const feed: FeedState = {
           id: item.id,
           memo: textRef.current?.value,
+          username: item.username,
+          image: item.image,
           createTime: new Date().getTime(),
           dataUrl: reader.result?.toString(),
           fileType: reader.result?.toString(),
