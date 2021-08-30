@@ -59,20 +59,19 @@ const Contact = () => {
   };
 
   // 저장
-  const save = (id: number) => {
-    const input[] = tbodyRef.current?.querySelectorAll("input")
-    // 몇번째 tr에 3가지 input을 선택함
-    // const inputN = tbodyRef.current?.querySelectorAll("input")[0];
-    // const inputP = tbodyRef.current?.querySelectorAll("input")[1];
-    // const inputE = tbodyRef.current?.querySelectorAll("input")[2];
+  const save = (id: number, index: number) => {
+    // tbody밑에있는 tr행에 모든 입력박스 선택
+    const input = tbodyRef.current
+      ?.querySelectorAll("tr")
+      [index].querySelectorAll("input");
 
     setContactList(
       produce((state) => {
         const item = state.find((item) => item.id === id);
         if (item) {
-          item.name = input[0]?.value;
-          item.phone = input[1]?.value;
-          item.email = input[2]?.value;
+          item.name = input?.item(0).value;
+          item.phone = input?.item(1).value;
+          item.email = input?.item(2).value;
           item.isEdit = false;
         }
       })
@@ -178,7 +177,7 @@ const Contact = () => {
                   <button
                     className="btn btn-outline-secondary btn-sm text-nowrap"
                     onClick={() => {
-                      save(item.id);
+                      save(item.id, index);
                     }}
                   >
                     저장

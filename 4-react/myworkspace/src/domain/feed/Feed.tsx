@@ -170,9 +170,6 @@ const Feed = () => {
                 style={{ backgroundImage: `url(${item.image})` }}
               />
               <span className="feed-username">{item.username}</span>
-              <span style={{ fontSize: "0.75rem" }}>
-                {getTimeString(item.createTime)}
-              </span>
             </div>
             {item.fileType &&
               (item.fileType?.includes("image") ? (
