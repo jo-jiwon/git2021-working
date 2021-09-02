@@ -25,12 +25,16 @@ import Profile from "./domain/profile/Profile";
 // const AccountManager = lazy(() => import("./domain/AccountManagerRef"));
 // const Components = lazy(() => import("./domain/Components"));
 // const BootStrap = lazy(() => import("./domain/Bootstrap"));
-const TodoInlineEdit = lazy(() => import("./domain/TodoInlineEdit"));
+// const TodoInlineEdit = lazy(() => import("./domain/TodoInlineEdit"));
 const Todo = lazy(() => import("./domain/todo/Todo"));
 const Feed = lazy(() => import("./domain/feed/Feed"));
-
+// const Photo = lazy(() => import("./domain/photo/Photo"));
+// const PhotoCreate = lazy(() => import("./domain/photo/PhotoCreate"));
+// const PhotoDetail = lazy(() => import("./domain/photo/PhotoDetail"));
+// const PhotoEdit = lazy(() => import("./domain/photo/PhotoEdit"));
 // const Feed_1 = lazy(() => import("./components/Feed_1"));
-const Contact = lazy(() => import("./domain/Contact_조지원"));
+const Contact = lazy(() => import("./domain/contact/Contact"));
+const ContactCreate = lazy(() => import("./domain/contact/ContactCreate"));
 // React == 컴포넌트 개발 라이브러리
 function App() {
   return (
@@ -54,11 +58,14 @@ function App() {
                 <Link to="/feeds">Feeds</Link>
               </li>
               <li>
-                <Link to="/contact">Contact</Link>
+                <Link to="/contacts">Contacts</Link>
               </li>
-              <li>
+              {/* <li>
+                <Link to="/photos">Photo</Link>
+              </li> */}
+              {/* <li>
                 <Link to="/todoInlineEdit">TodoInlineEdit</Link>
-              </li>
+              </li> */}
               {/* <li>
               <Link to="/feed_1">Feed_1</Link>
             </li> */}
@@ -72,11 +79,20 @@ function App() {
                 {/* Switch 영역에 컴포넌트가 로딩됨 */}
 
                 {/* 해당 경로에 대해서 로딩할 컴포넌트 목록을 작성 */}
+                {/* exact: 속성은 true/false, 경로가 정확히 일치할때만 이동 */}
                 <Route path="/" component={Home} exact />
                 <Route path="/todo" component={Todo} />
                 <Route path="/feeds" component={Feed} />
-                <Route path="/contact" component={Contact} />
-                <Route path="/todoInlineEdit" component={TodoInlineEdit} />
+                <Route path="/contacts" component={Contact} exact />
+                <Route path="/contacts/create" component={ContactCreate} />
+
+                {/* <Route path="/todoInlineEdit" component={TodoInlineEdit} /> */}
+                {/* <Route path="/photos" component={Photo} exact /> */}
+                {/* <Route path="/photos/create" component={PhotoCreate} exact /> */}
+                {/* id라는 매개변수를 url 경로에 넘김, path parameter */}
+                {/* <Route path="/photos/:id" component={PhotoDetail} exact /> */}
+                {/* <Route path="/photos/edit/:id" component={PhotoEdit} /> */}
+
                 {/* <Route path="/feed_1" component={Feed_1} /> */}
                 {/* <Route path="/components" component={Components} />
               <Route path="/counter" component={Counter} />

@@ -36,14 +36,14 @@ export const profileSlice = createSlice({
       console.log(action.type);
       console.log(action.payload);
       // immer가 내장 되어있음 따라서 state변수를 직접 제어함
-      const profile = action.payload; // 매배변수로 받은 데이터
+      const profile = action.payload; // 매개변수로 받은 데이터
       state.image = profile.image;
       state.username = profile.username;
     },
   },
 });
 
-// actiond creator 내보내기 -> 컴포넌트에서 사용하기 위함
+// action creator 내보내기 -> 컴포넌트에서 사용하기 위함
 // reducer 함수명에 맞는 action creator들은 createSlice할 때 자동으로 생성함
 
 // action = {type: "...", payload: {...}}

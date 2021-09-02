@@ -7,7 +7,8 @@ import FeedEditModal from "./FeedEditModal";
 import { FeedState } from "./type";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { url } from "inspector";
+
+import style from "./Feed.module.scss";
 
 // // 날짜/시간
 const getTimeString = (unixtime: number) => {
@@ -166,10 +167,12 @@ const Feed = () => {
           <div className="card mt-1" key={item.id}>
             <div className="card-header d-flex">
               <div
-                className="thumb me-1"
+                className={`${style["feed-thumb"]} me-1`}
                 style={{ backgroundImage: `url(${item.image})` }}
               />
-              <span className="feed-username">{item.username}</span>
+              <span className={`${style["feed-username"]}`}>
+                {item.username}
+              </span>
             </div>
             {item.fileType &&
               (item.fileType?.includes("image") ? (

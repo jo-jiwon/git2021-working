@@ -1,27 +1,20 @@
 @import "../../styles/app-variables.scss";
 
+// -------------Feed contant profile-----------------
 $thumb-size: 24px;
 $profile-image-size: 100px;
+$feed-bar-height: 36px;
 
-.thumb {
+.feed-thumb {
   width: $thumb-size;
   height: $thumb-size;
-  // calc((50px - 24px) / 2) == 13px
-  margin-top: calc((#{$app-bar-height} - #{$thumb-size}) / 2);
+  margin-top: calc((#{$feed-bar-height} - #{$thumb-size}) / 2);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 50%;
 }
 
-.username {
-  line-height: $app-bar-height;
-}
-
-.thumb-large {
-  width: $profile-image-size;
-  height: $profile-image-size;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+.feed-username {
+  line-height: $feed-bar-height;
 }
