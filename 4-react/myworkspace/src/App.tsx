@@ -35,6 +35,8 @@ const Feed = lazy(() => import("./domain/feed/Feed"));
 // const Feed_1 = lazy(() => import("./components/Feed_1"));
 const Contact = lazy(() => import("./domain/contact/Contact"));
 const ContactCreate = lazy(() => import("./domain/contact/ContactCreate"));
+const ContactDetail = lazy(() => import("./domain/contact/ContactDetail"));
+const ContactEdit = lazy(() => import("./domain/contact/ContactEdit"));
 // React == 컴포넌트 개발 라이브러리
 function App() {
   return (
@@ -85,7 +87,8 @@ function App() {
                 <Route path="/feeds" component={Feed} />
                 <Route path="/contacts" component={Contact} exact />
                 <Route path="/contacts/create" component={ContactCreate} />
-
+                <Route path="/contacts/detail/:id" component={ContactDetail} />
+                <Route path="/contacts/edit/:id" component={ContactEdit} />
                 {/* <Route path="/todoInlineEdit" component={TodoInlineEdit} /> */}
                 {/* <Route path="/photos" component={Photo} exact /> */}
                 {/* <Route path="/photos/create" component={PhotoCreate} exact /> */}

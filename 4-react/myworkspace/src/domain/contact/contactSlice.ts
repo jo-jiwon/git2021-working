@@ -53,13 +53,39 @@ const contactSlice = createSlice({
   name: "contact",
   initialState,
   reducers: {
+    // 추가 reducer
     addContact: (state, action: PayloadAction<ContactItem>) => {
       const contact = action.payload;
       state.data.unshift(contact);
     },
+    // 삭제 reducer
+    // payload 타입은 number
+    delContact: (state, action: PayloadAction<number>) => {
+      const id = action.payload;
+      // id에 해당하는 아이템의 index를 찾고 그 index로 splice한다.
+      state.data.splice(
+        state.data.findIndex((item) => item.id === id),
+        1
+      );
+    },
+    // 수정 reducer
+    editContact: (state, action: PayloadAction<ContactItem>) => {
+      // 생성해서 넘길 객체
+      const modifyItem = action.payload;
+      // state에 있는 객체 === 생성해서 넘길 객체이다
+      const contactItem = state.data.find((item) => item.id === modifyItem.id);
+      // state에 있는 객체의 속성을 생성할 객체의 속성으로 변경
+      if (contactItem) {
+        contactItem.name = modifyItem.name;
+        contactItem.phone = modifyItem.phone;
+        contactItem.email = modifyItem.email;
+        contactItem.description = modifyItem.description;
+      }
+    },
   },
 });
 
-export const { addContact } = contactSlice.actions;
+// 추가, 삭제, 수정 action payload export
+export const { addContact, delContact, editContact } = contactSlice.actions;
 
 export default contactSlice.reducer;

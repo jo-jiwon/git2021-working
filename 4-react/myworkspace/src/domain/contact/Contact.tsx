@@ -15,7 +15,7 @@ const Contact = () => {
   const history = useHistory();
 
   return (
-    <div>
+    <div className="mx-auto" style={{ width: "40vw" }}>
       <h2 className="text-center">Contact</h2>
       <div className="d-flex justify-content-end mb-2">
         <button
@@ -41,7 +41,13 @@ const Contact = () => {
         </thead>
         <tbody>
           {contact.data.map((item, index) => (
-            <tr key={`contact-item-${index}`}>
+            <tr
+              key={`contact-item-${index}`}
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                history.push(`/contacts/detail/${item.id}`);
+              }}
+            >
               <td>{item.id}</td>
               <td>{item.name}</td>
               <td>{item.phone}</td>

@@ -114,7 +114,7 @@ const ContactCreate = () => {
             handleAddClick();
           }}
         >
-          <i className="bi bi-plus me-1" />
+          <i className="bi bi-check me-1" />
           저장
         </button>
       </div>
