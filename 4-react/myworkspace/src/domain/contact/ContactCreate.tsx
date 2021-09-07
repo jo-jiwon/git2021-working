@@ -51,7 +51,7 @@ const ContactCreate = () => {
 
   return (
     <div className="mx-auto" style={{ width: "40vw" }}>
-      <h2 className="text-center">Contact Create</h2>
+      <h2 className="text-center my-5">Contact Create</h2>
       <form>
         <table className="table">
           <tbody>

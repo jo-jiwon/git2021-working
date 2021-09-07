@@ -25,7 +25,7 @@ const ContactDetail = () => {
 
   return (
     <div style={{ width: "40vw" }} className="mx-auto">
-      <h2 className="text-center">Contact Detail</h2>
+      <h2 className="text-center my-5">Contact Detail</h2>
       <table className="table">
         <tbody>
           <tr>

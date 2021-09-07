@@ -45,7 +45,7 @@ const ContactEdit = () => {
 
   return (
     <div className="mx-auto" style={{ width: "40vw" }}>
-      <h2 className="text-center">Contact Edit</h2>
+      <h2 className="text-center my-5">Contact Edit</h2>
 
       <table className="table">
         <tbody>
