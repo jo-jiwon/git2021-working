@@ -34,4 +34,9 @@ public class Account {
 	public void setBalance(int balance) {
 		this.balance = balance;
 	}
+
+	// 키 조회 확인용
+	public String toString() {
+		return "findKey [ano= " + ano + ", owner= " + owner + ", balance= " + balance + "]";
+	}
 }
