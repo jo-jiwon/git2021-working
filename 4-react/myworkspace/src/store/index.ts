@@ -7,9 +7,9 @@
 //                  승인상태(제출, 검토중, 반려, 승인)
 
 import { configureStore } from "@reduxjs/toolkit";
-import profileReducer from "../domain/profile/profileSlice";
-import contactReducer from "../domain/contact/contactSlice";
-// import photoReducer from "../domain/photo/photoSlice";
+import profileReducer from "../features/profile/profileSlice";
+import contactReducer from "../features/contact/contactSlice";
+import photoReducer from "../features/photo/photoSlice";
 
 // global state(전역 상태) 저장소
 // global state: profile, todo, contact ..여러개 state가 있음
@@ -20,7 +20,7 @@ export const store = configureStore({
     // profile state처리하는 reducer를 등록
     profile: profileReducer,
     contact: contactReducer,
-    // photo: photoReducer,
+    photo: photoReducer,
   }, // 각 state별로 처리할 reducer목록
   devTools: true, // 개발툴 사용여부
 });

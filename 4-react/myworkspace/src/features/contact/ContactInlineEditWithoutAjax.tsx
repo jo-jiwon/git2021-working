@@ -1,8 +1,9 @@
 // import userEvent from "@testing-library/user-event";
 import produce from "immer";
 // import { iteratorSymbol } from "immer/dist/internal";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
+// 1건에 대한 타입
 interface ContactState {
   id: number;
   name?: string | undefined;
@@ -11,8 +12,20 @@ interface ContactState {
   isEdit?: boolean;
 }
 
+// 서버로 부터 받아오는 데이터 1건에 대한 타입
+interface ContactResponse {
+  id: number;
+  name?: string | undefined;
+  phone?: string;
+  email?: string;
+}
+
 const Contact = () => {
+  // 여러건에 대한 state
   const [contactList, setContactList] = useState<ContactState[]>([]);
+
+  // 데이터 받아옴 완료여부를 표시 state
+  const [isLoading, setLoading] = useState<Boolean>(true);
 
   const formRef = useRef<HTMLFormElement>(null);
   const inputNameRef = useRef<HTMLInputElement>(null);
@@ -79,7 +92,7 @@ const Contact = () => {
   };
 
   return (
-    <>
+    <div style={{ width: "40vw" }} className="mx-auto">
       <h2 className="text-center my-5">연락처 관리</h2>
       <form className="d-flex" ref={formRef}>
         <input
@@ -113,7 +126,7 @@ const Contact = () => {
 
       <table className="table table-striped">
         <thead>
-          <tr>
+          <tr className="text-center">
             <th scope="col">#</th>
             <th scope="col">이름</th>
             <th scope="col">전화번호</th>
@@ -122,8 +135,24 @@ const Contact = () => {
           </tr>
         </thead>
         <tbody ref={tbodyRef}>
+          {/* 로딩중 처리 표시 */}
+          {isLoading && (
+            <tr>
+              <td className="text-center" colSpan={5}>
+                <div className="spinner-border text-primary " role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </div>
+              </td>
+            </tr>
+          )}
+          {/* 빈 값 데이터 표시 */}
+          {!isLoading && contactList.length === 0 && (
+            <tr className="text-center">
+              <td colSpan={5}>데이터가 없습니다.</td>
+            </tr>
+          )}
           {contactList.map((item, index) => (
-            <tr key={item.id}>
+            <tr className="text-center" key={item.id}>
               {/* 보기모드일때 */}
               {!item.isEdit && <td>{item.id}</td>}
               {!item.isEdit && <td>{item.name}</td>}
@@ -146,21 +175,19 @@ const Contact = () => {
                   <input type="text" defaultValue={item.email} />
                 </td>
               )}
+
               {/* 보기모드일때 */}
               {!item.isEdit && (
                 <td>
                   <button
-                    className="btn btn-outline-secondary btn-sm text-nowrap"
+                    className="btn btn-outline-secondary btn-sm text-nowrap me-1"
                     onClick={() => {
                       edit(item.id, true);
                     }}
                   >
                     수정
                   </button>
-                </td>
-              )}
-              {!item.isEdit && (
-                <td>
+
                   <button
                     className="btn btn-outline-secondary btn-sm text-nowrap"
                     onClick={() => {
@@ -171,21 +198,19 @@ const Contact = () => {
                   </button>
                 </td>
               )}
+
               {/* 수정모드일때 */}
               {item.isEdit && (
                 <td>
                   <button
-                    className="btn btn-outline-secondary btn-sm text-nowrap"
+                    className="btn btn-outline-secondary btn-sm text-nowrap me-1"
                     onClick={() => {
                       save(item.id, index);
                     }}
                   >
                     저장
                   </button>
-                </td>
-              )}
-              {item.isEdit && (
-                <td>
+
                   <button
                     className="btn btn-outline-secondary btn-sm text-nowrap"
                     onClick={() => {
@@ -200,7 +225,7 @@ const Contact = () => {
           ))}
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 export default Contact;

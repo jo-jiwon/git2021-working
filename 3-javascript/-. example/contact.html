@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+
+    <title>contact_조지원</title>
+  </head>
+
+  <body style="width: 700px" class="mx-auto">
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+    ></script>
+
+    <h1 class="text-center mt-3">연락처 관리</h1>
+
+    <!-- 입력폼 -->
+    <form id="submit-form" class="mt-4 d-flex" onsubmit="return false">
+      <input
+        id="user-name"
+        type="text"
+        class="form-control me-1"
+        placeholder="이름"
+      />
+      <input
+        id="user-phone"
+        type="text"
+        class="form-control me-1"
+        placeholder="전화번호"
+      />
+      <input
+        id="user-email"
+        type="text"
+        class="form-control me-2"
+        placeholder="이메일"
+      />
+      <button
+        id="btn-add"
+        type="button"
+        class="btn btn-outline-primary text-nowrap"
+      >
+        추가
+      </button>
+    </form>
+
+    <!-- 테이블 -->
+    <table id="user-table" class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col" width="10%">#</th>
+          <th scope="col" width="20%">이름</th>
+          <th scope="col" width="30%">전화번호</th>
+          <th scope="col" width="30%">이메일</th>
+          <th scope="col" width="10%">작업</th>
+        </tr>
+      </thead>
+      <tbody id="tbody-add"></tbody>
+    </table>
+
+    <script>
+      // 변수명 생성
+      const submitForm = document.querySelector("#submit-form");
+      const userNumber = document.querySelector("#user-number");
+      const userName = document.querySelector("#user-name");
+      const userPhone = document.querySelector("#user-phone");
+      const userEmail = document.querySelector("#user-email");
+      const btnAdd = document.querySelector("#btn-add");
+      const userTable = document.querySelector("#user-table");
+      const tbodyAdd = document.querySelector("#tbody-add");
+
+      // 키보드 엔터 이벤트 생성
+      submitForm.addEventListener("keyup", (event) => {
+        if (event.keyCode == 13) {
+          (userName, userPhone, userEmail).blur();
+          add(event);
+        }
+      });
+
+      // 이벤트 생성
+      function add(event) {
+        // 입력값 확인
+        console.log(userName.value, userPhone.value, userEmail.value);
+
+        // 빈 값 메세지 생성
+        if ((!userName.value, !userPhone.value, !userEmail.value)) {
+          const alertDiv = /*html*/ `
+        <div class="alert alert-danger alert-dismissible my-2" role="alert">
+          입력값을 입력해주세요.
+          <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="Close"></button></div>
+        `;
+          userTable.insertAdjacentHTML("afterend", alertDiv);
+          return;
+        }
+
+        // 입력받은 내용 출력하기
+        const td = /*html*/ `
+      <td>${+userNumber}</td >
+      <td>${userName.value}</td>
+      <td>${userPhone.value}</td>
+      <td>${userEmail.value}</td>
+      <td>
+        <button class="btn btn-outline-secondary btn-sm remove">삭제</button>
+      </td>
+      `;
+        // 입력받은 td내용을 tobdyAdd안에 afterbegin 가장 첫번째 추가한다.
+        tbodyAdd.insertAdjacentHTML("afterbegin", td);
+
+        // 입력값 추가시 초기화
+        submitForm.reset();
+      }
+      btnAdd.addEventListener("click", add);
+
+      // 이벤트 삭제
+      function remove(event) {
+        if (event.target.className.includes("remove")) {
+          const btnRemove = event.target;
+          console.log(btnRemove.parentNode.parentNode);
+          const td = btnRemove.parentNode.parentNode;
+          td.remove();
+        }
+      }
+      tbodyAdd.addEventListener("click", remove);
+
+      fetch("http://localhost:8080/contacts")
+        .then((res) => res.json())
+        .then((data) => {
+          for (let item of data) {
+            const td = /*html*/ `
+              <td>${+userNumber}</td >
+              <td>${userName.value}</td>
+              <td>${userPhone.value}</td>
+              <td>${userEmail.value}</td>
+              <td>
+                <button class="btn btn-outline-secondary btn-sm remove">삭제</button>
+              </td>
+              `;
+
+            // 입력받은 td내용을 tobdyAdd안에 afterbegin 가장 첫번째 추가한다.
+            tbodyAdd.insertAdjacentHTML("afterbegin", td);
+          }
+        });
+    </script>
+  </body>
+</html>
