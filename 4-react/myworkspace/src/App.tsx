@@ -25,7 +25,7 @@ import Profile from "./domain/profile/Profile";
 // const AccountManager = lazy(() => import("./domain/AccountManagerRef"));
 // const Components = lazy(() => import("./domain/Components"));
 // const BootStrap = lazy(() => import("./domain/Bootstrap"));
-// const TodoInlineEdit = lazy(() => import("./domain/TodoInlineEdit"));
+const TodoInlineEdit = lazy(() => import("./domain/TodoInlineEdit"));
 const Todo = lazy(() => import("./domain/todo/Todo"));
 const Feed = lazy(() => import("./domain/feed/Feed"));
 // const Photo = lazy(() => import("./domain/photo/Photo"));
@@ -65,9 +65,9 @@ function App() {
               {/* <li>
                 <Link to="/photos">Photo</Link>
               </li> */}
-              {/* <li>
+              <li>
                 <Link to="/todoInlineEdit">TodoInlineEdit</Link>
-              </li> */}
+              </li>
               {/* <li>
               <Link to="/feed_1">Feed_1</Link>
             </li> */}
@@ -89,7 +89,7 @@ function App() {
                 <Route path="/contacts/create" component={ContactCreate} />
                 <Route path="/contacts/detail/:id" component={ContactDetail} />
                 <Route path="/contacts/edit/:id" component={ContactEdit} />
-                {/* <Route path="/todoInlineEdit" component={TodoInlineEdit} /> */}
+                <Route path="/todoInlineEdit" component={TodoInlineEdit} />
                 {/* <Route path="/photos" component={Photo} exact /> */}
                 {/* <Route path="/photos/create" component={PhotoCreate} exact /> */}
                 {/* id라는 매개변수를 url 경로에 넘김, path parameter */}
