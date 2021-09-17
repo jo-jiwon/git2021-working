@@ -29,14 +29,14 @@ const TodoInlineEdit = lazy(() => import("./features/todo/TodoInlineEdit"));
 const ContactInlineEdit = lazy(
   () => import("./features/contact/ContactInlineEdit")
 );
-const Todo = lazy(() => import("./features/todo/Todo"));
+// const Todo = lazy(() => import("./features/todo/Todo"));
 const Feed = lazy(() => import("./features/feed/Feed"));
 const Photo = lazy(() => import("./features/photo/Photo"));
 const PhotoCreate = lazy(() => import("./features/photo/PhotoCreate"));
 const PhotoDetail = lazy(() => import("./features/photo/PhotoDetail"));
 const PhotoEdit = lazy(() => import("./features/photo/PhotoEdit"));
 // const Feed_1 = lazy(() => import("./components/Feed_1"));
-const Contact = lazy(() => import("./features/contact/Contact"));
+// const Contact = lazy(() => import("./features/contact/Contact"));
 const ContactCreate = lazy(() => import("./features/contact/ContactCreate"));
 const ContactDetail = lazy(() => import("./features/contact/ContactDetail"));
 const ContactEdit = lazy(() => import("./features/contact/ContactEdit"));
@@ -56,15 +56,15 @@ function App() {
               <li>
                 <Link to="/">Home</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/todo">Todo</Link>
-              </li>
+              </li> */}
               <li>
                 <Link to="/feeds">Feeds</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/contacts">Contacts</Link>
-              </li>
+              </li> */}
               <li>
                 <Link to="/photos">Photo</Link>
               </li>
@@ -89,9 +89,9 @@ function App() {
                 {/* 해당 경로에 대해서 로딩할 컴포넌트 목록을 작성 */}
                 {/* exact: 속성은 true/false, 경로가 정확히 일치할때만 이동 */}
                 <Route path="/" component={Home} exact />
-                <Route path="/todo" component={Todo} />
+                {/* <Route path="/todo" component={Todo} /> */}
                 <Route path="/feeds" component={Feed} />
-                <Route path="/contacts" component={Contact} exact />
+                {/* <Route path="/contacts" component={Contact} exact /> */}
                 <Route path="/contacts/create" component={ContactCreate} />
                 <Route path="/contacts/detail/:id" component={ContactDetail} />
                 <Route path="/contacts/edit/:id" component={ContactEdit} />

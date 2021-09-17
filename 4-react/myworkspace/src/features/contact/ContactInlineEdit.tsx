@@ -56,13 +56,30 @@ const Contact = () => {
   }, []);
 
   // 추가
-  const add = () => {
-    const contact: ContactState = {
-      id: contactList.length > 0 ? contactList[0].id + 1 : 1,
+  const add = async () => {
+    // ------------------------ 백엔드 연동 부분 ------------------------
+    const result = await api.add({
       name: inputNameRef.current?.value,
       phone: inputPhoneRef.current?.value,
       email: inputEmailRef.current?.value,
+    });
+    console.log(result);
+
+    // ------------------------ state 변경부분 ------------------------
+    const contact: ContactState = {
+      id: result.data.id,
+      name: result.data.name,
+      phone: result.data.phone,
+      email: result.data.email,
     };
+
+    // const contact: ContactState = {
+    //   id: contactList.length > 0 ? contactList[0].id + 1 : 1,
+    //   name: inputNameRef.current?.value,
+    //   phone: inputPhoneRef.current?.value,
+    //   email: inputEmailRef.current?.value,
+    // };
+
     setContactList(
       produce((state) => {
         state.unshift(contact);
@@ -73,7 +90,14 @@ const Contact = () => {
   };
 
   // 삭제
-  const del = (id: number, index: number) => {
+  const del = async (id: number, index: number) => {
+    console.log(id);
+
+    // ------------------------ 백엔드 연동 부분 ------------------------
+    const result = await api.remove(id);
+    console.log(result.status);
+
+    // immer로 state 배열 직접 조작(index로 삭제)
     setContactList(
       produce((state) => {
         state.splice(index, 1);
@@ -94,27 +118,49 @@ const Contact = () => {
   };
 
   // 저장
-  const save = (id: number, index: number) => {
+  const save = async (id: number, index: number) => {
     // tbody밑에있는 tr행에 모든 입력박스 선택
     const input = tbodyRef.current
       ?.querySelectorAll("tr")
       [index].querySelectorAll("input");
 
+    // ------------------------ 백엔드 연동 부분 ------------------------
+    if (!input) return;
+    const result = await api.modify(id, {
+      name: input.item(0).value,
+      phone: input.item(1).value,
+      email: input.item(2).value,
+    });
+    console.log(result.status);
+
+    // ------------------------ state 변경부분 ------------------------
     setContactList(
       produce((state) => {
         const item = state.find((item) => item.id === id);
         if (item) {
-          item.name = input?.item(0).value;
-          item.phone = input?.item(1).value;
-          item.email = input?.item(2).value;
+          item.name = result.data.name;
+          item.phone = result.data.phone;
+          item.email = result.data.email;
           item.isEdit = false;
         }
       })
     );
+
+    // setContactList(
+    //   produce((state) => {
+    //     const item = state.find((item) => item.id === id);
+    //     if (item) {
+    //       item.name = input?.item(0).value;
+    //       item.phone = input?.item(1).value;
+    //       item.email = input?.item(2).value;
+    //       item.isEdit = false;
+    //     }
+    //   })
+    // );
   };
 
   return (
-    <div style={{ width: "40vw" }} className="mx-auto">
+    <div style={{ width: "60vw" }} className="mx-auto">
       <h2 className="text-center my-5">연락처 관리</h2>
       <form className="d-flex" ref={formRef}>
         <input

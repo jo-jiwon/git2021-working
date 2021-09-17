@@ -57,15 +57,20 @@ public class TodoController {
 			return null;
 		}
 
+		// 태그들 다 지웠더니 빈문자열
+		String memo = getPlainText(todo.getMemo());
+		if (memo.isEmpty()) {
+			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			return null;
+		}
+
 		// id값을 생성
 		Long currentId = maxId.incrementAndGet();
 
 		// 입력받은 데이터로 todo객체를 생성
 		// id값과 생성일시는 서버에서 생성한 것으로 처리함
 		// html태그가 있으면 날려버림(script에서 문제가 발생함)
-		Todo todoItem = Todo.builder().id(currentId)
-//								.memo(todo.getMemo().replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", ""))
-				.memo(todo.getMemo()).createdTime(new Date().getTime()).build();
+		Todo todoItem = Todo.builder().id(currentId).memo(memo).createdTime(new Date().getTime()).build();
 		// todo 목록객체 추가
 		todos.put(currentId, todoItem);
 
@@ -128,9 +133,13 @@ public class TodoController {
 		}
 
 		// 데이터 변경
-		findItem.setMemo(todo.getMemo());
+		findItem.setMemo(getPlainText(todo.getMemo()));
 
 		return findItem;
 	}
 
+	// html 태그를 제거하는 메서드
+	private String getPlainText(String text) {
+		return text.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");
+	}
 }
