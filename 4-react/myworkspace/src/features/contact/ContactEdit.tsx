@@ -1,8 +1,9 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { AppDispatch, RootState } from "../../store";
-import { editContact } from "./contactSlice";
+import { requestEditContact } from "./contactSaga";
+
 const ContactEdit = () => {
   // input ref객체
   const inputNameRef = useRef<HTMLInputElement>(null);
@@ -10,14 +11,28 @@ const ContactEdit = () => {
   const inputEmailRef = useRef<HTMLInputElement>(null);
   const descTextAreaRef = useRef<HTMLTextAreaElement>(null);
 
-  const history = useHistory();
-  const diepatch = useDispatch<AppDispatch>();
-
   // id 데이터 가져옴
   const { id } = useParams<{ id: string }>();
+
   const contactItem = useSelector((state: RootState) =>
     state.contact.data.find((item) => item.id === +id)
   );
+
+  // 1. state 수정 여부 감지 및 가져오기
+  const isEditCompleted = useSelector(
+    (state: RootState) => state.contact.isEditCompleted
+  );
+
+  // dispatch 함수 만들기
+  const dispatch = useDispatch<AppDispatch>();
+
+  // 히스토리 객체 가져오기
+  const history = useHistory();
+
+  // 2. state 변경되면 처리되는 함수
+  useEffect(() => {
+    isEditCompleted && history.push("/contacts");
+  }, [isEditCompleted, history]);
 
   // 저장 변경할 객체 생성
   const handSaveClick = () => {
@@ -33,13 +48,13 @@ const ContactEdit = () => {
         : "";
 
       // 저장 누르면 입력값 잘 나오는지 확인
-      console.log(item.name);
-      console.log(item.phone);
-      console.log(item.email);
-      console.log(item.description);
+      // console.log(item.name);
+      // console.log(item.phone);
+      // console.log(item.email);
+      // console.log(item.description);
 
-      diepatch(editContact(item));
-      history.push("/contacts");
+      dispatch(requestEditContact(item));
+      // history.push("/contacts");
     }
   };
 

@@ -1,7 +1,8 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { AppDispatch, RootState } from "../../store";
-import { delContact } from "./contactSlice";
+import { requestDeleteContact } from "./contactSaga";
 
 const ContactDetail = () => {
   // useParam<타입>(), 매개변수들을 객체화할 형식을 제너릭으로 넣어줌
@@ -13,14 +14,29 @@ const ContactDetail = () => {
   ); // 반환형식을 타입 추론으로 처리
   // ) as contactItem 타입 단언 (type assertion)
 
+  // 1. state 삭제 여부 감지 및 가져오기
+  const isDeleteCompleted = useSelector(
+    (state: RootState) => state.contact.isDeleteCompleted
+  );
+
+  // dispatch 함수 만들기
+  const dispatch = useDispatch<AppDispatch>();
+
+  // 히스토리 객체 가져오기
   const history = useHistory();
 
-  const dispatch = useDispatch<AppDispatch>();
+  // 2. state 변경되면 처리되는 함수
+  useEffect(() => {
+    isDeleteCompleted && history.push("/contacts");
+  }, [isDeleteCompleted, history]);
+
   const handDeleteClick = () => {
+    // saga action
+    dispatch(requestDeleteContact(+id));
     // id값만 삭제
-    dispatch(delContact(+id));
+    // dispatch(delContact(+id));
     // 목록으로 이동
-    history.push("/contacts");
+    // history.push("/contacts");
   };
 
   return (

@@ -11,6 +11,9 @@ import { store } from "./store"; // redux store
 
 import Home from "./features/Home";
 import Profile from "./features/profile/Profile";
+import Progress from "./components/progress/Progress";
+import AlertStack from "./components/alert/AlertStack";
+
 // SPA(Single Page Application)
 // : 페이지 파일이 1개, index.html
 // : 특정 영역(Switch)에 컴포넌트(js)를 로딩함
@@ -26,9 +29,7 @@ import Profile from "./features/profile/Profile";
 // const Components = lazy(() => import("./features/Components"));
 // const BootStrap = lazy(() => import("./features/Bootstrap"));
 const TodoInlineEdit = lazy(() => import("./features/todo/TodoInlineEdit"));
-const ContactInlineEdit = lazy(
-  () => import("./features/contact/ContactInlineEdit")
-);
+// const ContactInlineEdit = lazy(() => import("./features/contact/inline/ContactInlineEdit"));
 // const Todo = lazy(() => import("./features/todo/Todo"));
 const Feed = lazy(() => import("./features/feed/Feed"));
 const Photo = lazy(() => import("./features/photo/Photo"));
@@ -36,7 +37,7 @@ const PhotoCreate = lazy(() => import("./features/photo/PhotoCreate"));
 const PhotoDetail = lazy(() => import("./features/photo/PhotoDetail"));
 const PhotoEdit = lazy(() => import("./features/photo/PhotoEdit"));
 // const Feed_1 = lazy(() => import("./components/Feed_1"));
-// const Contact = lazy(() => import("./features/contact/Contact"));
+const Contact = lazy(() => import("./features/contact/Contact"));
 const ContactCreate = lazy(() => import("./features/contact/ContactCreate"));
 const ContactDetail = lazy(() => import("./features/contact/ContactDetail"));
 const ContactEdit = lazy(() => import("./features/contact/ContactEdit"));
@@ -47,11 +48,11 @@ function App() {
       <Router>
         {/* main container */}
         <div className="mx-auto">
-          <header className="bg-primary app-bar shadow d-flex justify-content-end">
+          <header className="app-bar position-fixed d-flex justify-content-end bg-primary shadow">
             <Profile />
           </header>
-          <nav className="position-fixed bg-light shadow-sm draw-menu">
-            <h3>My WorkSpace</h3>
+          <nav className="drawer-menu position-fixed bg-light shadow-sm">
+            <h4 className="ms-2 my-2">MY WORKSPACE</h4>
             <ul>
               <li>
                 <Link to="/">Home</Link>
@@ -62,18 +63,18 @@ function App() {
               <li>
                 <Link to="/feeds">Feeds</Link>
               </li>
-              {/* <li>
+              <li>
                 <Link to="/contacts">Contacts</Link>
-              </li> */}
+              </li>
               <li>
                 <Link to="/photos">Photo</Link>
               </li>
               <li>
                 <Link to="/todoInlineEdit">TodoInlineEdit</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/contactInlineEdit">ContactInlineEdit</Link>
-              </li>
+              </li> */}
               {/* <li>
               <Link to="/feed_1">Feed_1</Link>
             </li> */}
@@ -91,15 +92,12 @@ function App() {
                 <Route path="/" component={Home} exact />
                 {/* <Route path="/todo" component={Todo} /> */}
                 <Route path="/feeds" component={Feed} />
-                {/* <Route path="/contacts" component={Contact} exact /> */}
+                <Route path="/contacts" component={Contact} exact />
                 <Route path="/contacts/create" component={ContactCreate} />
                 <Route path="/contacts/detail/:id" component={ContactDetail} />
                 <Route path="/contacts/edit/:id" component={ContactEdit} />
                 <Route path="/todoInlineEdit" component={TodoInlineEdit} />
-                <Route
-                  path="/contactInlineEdit"
-                  component={ContactInlineEdit}
-                />
+                {/* <Route path="/contactInlineEdit" component={ContactInlineEdit}/> */}
                 <Route path="/photos" component={Photo} exact />
                 <Route path="/photos/create" component={PhotoCreate} exact />
                 {/* id라는 매개변수를 url 경로에 넘김, path parameter */}
@@ -115,6 +113,9 @@ function App() {
               <Route path="/bootstrap" component={BootStrap} /> */}
               </Switch>
             </Suspense>
+
+            <Progress />
+            <AlertStack />
           </main>
         </div>
       </Router>
