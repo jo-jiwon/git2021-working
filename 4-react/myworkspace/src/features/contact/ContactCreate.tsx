@@ -10,7 +10,7 @@ const ContactCreate = () => {
   const inputNameRef = useRef<HTMLInputElement>(null);
   const inputPhoneRef = useRef<HTMLInputElement>(null);
   const inputEmailRef = useRef<HTMLInputElement>(null);
-  const descTextAreaRef = useRef<HTMLTextAreaElement>(null);
+  const memoTextAreaRef = useRef<HTMLTextAreaElement>(null);
 
   // 데이터배열 가져오기
   const contactData = useSelector((state: RootState) => state.contact.data);
@@ -37,7 +37,7 @@ const ContactCreate = () => {
     // console.log(inputNameRef.current?.value);
     // console.log(inputPhoneRef.current?.value);
     // console.log(inputEmailRef.current?.value);
-    // console.log(descTextAreaRef.current?.value);
+    // console.log(memoTextAreaRef.current?.value);
 
     // 추가 객체 생성
     const item: ContactItem = {
@@ -46,7 +46,7 @@ const ContactCreate = () => {
       name: inputNameRef.current ? inputNameRef.current.value : "",
       phone: inputPhoneRef.current ? inputPhoneRef.current.value : "",
       email: inputEmailRef.current ? inputEmailRef.current.value : "",
-      description: descTextAreaRef.current ? descTextAreaRef.current.value : "",
+      memo: memoTextAreaRef.current ? memoTextAreaRef.current.value : "",
       createdTime: new Date().getTime(),
     };
 
@@ -105,7 +105,7 @@ const ContactCreate = () => {
                 <textarea
                   className="form-control"
                   style={{ height: "30vh" }}
-                  ref={descTextAreaRef}
+                  ref={memoTextAreaRef}
                 ></textarea>
               </td>
             </tr>

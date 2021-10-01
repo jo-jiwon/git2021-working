@@ -6,7 +6,7 @@ export interface ContactItemResponse {
   name: string;
   phone: string;
   email: string;
-  description: string;
+  memo: string;
   createdTime: number;
 }
 
@@ -14,7 +14,7 @@ export interface ContactItemRequest {
   name: string;
   phone: string;
   email: string;
-  description: string;
+  memo: string;
 }
 
 // 서버 데이터 연동 API

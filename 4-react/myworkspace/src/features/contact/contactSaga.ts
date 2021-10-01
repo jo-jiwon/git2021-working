@@ -52,7 +52,7 @@ function* addData(action: PayloadAction<ContactItem>) {
       name: contactItemPayload.name,
       phone: contactItemPayload.phone,
       email: contactItemPayload.email,
-      description: contactItemPayload.description,
+      memo: contactItemPayload.memo,
     };
 
     // 1. rest api에 post로 데이터 보냄
@@ -73,7 +73,7 @@ function* addData(action: PayloadAction<ContactItem>) {
       name: result.data.name,
       phone: result.data.phone,
       email: result.data.email,
-      description: result.data.description,
+      memo: result.data.memo,
       createdTime: result.data.createdTime,
     };
 
@@ -108,7 +108,7 @@ function* fetchData() {
         name: item.name,
         phone: item.phone,
         email: item.email,
-        description: item.description,
+        memo: item.memo,
         createdTime: item.createdTime,
       } as ContactItem)
   );
@@ -155,7 +155,7 @@ function* editData(action: PayloadAction<ContactItem>) {
     name: contactItemPayload.name,
     phone: contactItemPayload.phone,
     email: contactItemPayload.email,
-    description: contactItemPayload.description,
+    memo: contactItemPayload.memo,
   };
 
   // spinner 보여주기
@@ -177,7 +177,7 @@ function* editData(action: PayloadAction<ContactItem>) {
     name: result.data.name,
     phone: result.data.phone,
     email: result.data.email,
-    description: result.data.description,
+    memo: result.data.memo,
     createdTime: result.data.createdTime,
   };
 

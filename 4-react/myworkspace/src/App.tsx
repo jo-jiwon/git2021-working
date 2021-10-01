@@ -91,19 +91,18 @@ function App() {
                 {/* exact: 속성은 true/false, 경로가 정확히 일치할때만 이동 */}
                 <Route path="/" component={Home} exact />
                 {/* <Route path="/todo" component={Todo} /> */}
+                <Route path="/todoInlineEdit" component={TodoInlineEdit} />
                 <Route path="/feeds" component={Feed} />
+                <Route path="/photos" component={Photo} exact />
+                <Route path="/photos/create" component={PhotoCreate} />
+                {/* id라는 매개변수를 url 경로에 넘김, path parameter */}
+                <Route path="/photos/detail/:id" component={PhotoDetail} />
+                <Route path="/photos/edit/:id" component={PhotoEdit} />
+                {/* <Route path="/contactInlineEdit" component={ContactInlineEdit}/> */}
                 <Route path="/contacts" component={Contact} exact />
                 <Route path="/contacts/create" component={ContactCreate} />
                 <Route path="/contacts/detail/:id" component={ContactDetail} />
                 <Route path="/contacts/edit/:id" component={ContactEdit} />
-                <Route path="/todoInlineEdit" component={TodoInlineEdit} />
-                {/* <Route path="/contactInlineEdit" component={ContactInlineEdit}/> */}
-                <Route path="/photos" component={Photo} exact />
-                <Route path="/photos/create" component={PhotoCreate} exact />
-                {/* id라는 매개변수를 url 경로에 넘김, path parameter */}
-                <Route path="/photos/:id" component={PhotoDetail} exact />
-                <Route path="/photos/edit/:id" component={PhotoEdit} />
-
                 {/* <Route path="/feed_1" component={Feed_1} /> */}
                 {/* <Route path="/components" component={Components} />
               <Route path="/counter" component={Counter} />

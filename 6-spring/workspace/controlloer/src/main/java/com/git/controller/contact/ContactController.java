@@ -35,9 +35,10 @@ public class ContactController {
 	// contact 1건 추가
 	@PostMapping(value = "/contacts")
 	public Contact addContact(@RequestBody Contact contact, HttpServletResponse res) {
-		// 이름, 연락처, 이메일 값을 넣지 않을 경우 에러처리해라
-		if (contact.getName() == null || contact.getName().isEmpty() && contact.getPhone() == null
-				|| contact.getPhone().isEmpty() && contact.getEmail() == null || contact.getEmail().isEmpty()) {
+		// 이름, 연락처, (이메일) 값을 넣지 않을 경우 에러처리해라
+		if ((contact.getName() == null || contact.getName().isEmpty())
+				|| (contact.getPhone() == null || contact.getPhone().isEmpty())
+		/* || (contact.getEmail() == null || contact.getEmail().isEmpty()) */) {
 			// 값이 빈값 이 경우 클라이언트 오류이므로 4xx (요청값을 잘못 보냄)
 
 			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -97,10 +98,10 @@ public class ContactController {
 		}
 
 		// 데이터 검증 로직
-		// 메모값이 없으면 에러처리
+		// 이름, 연락처, (이메일)이 하나라도 빈값이면 에러처리
 		if ((contact.getName() == null || contact.getName().isEmpty())
-				&& (contact.getPhone() == null || contact.getPhone().isEmpty())
-				&& (contact.getEmail() == null || contact.getEmail().isEmpty())) {
+				|| (contact.getPhone() == null || contact.getPhone().isEmpty())
+		/* || (contact.getEmail() == null || contact.getEmail().isEmpty()) */) {
 			// bad request(400) : 클라이언트 오류
 			// 빈값으로 보냈거나, 요청값을 잘못보냈을 경우
 			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -111,6 +112,7 @@ public class ContactController {
 		findItem.setName(contact.getName());
 		findItem.setPhone(contact.getPhone());
 		findItem.setEmail(contact.getEmail());
+		findItem.setDescription(contact.getDescription());
 		return findItem;
 
 	}

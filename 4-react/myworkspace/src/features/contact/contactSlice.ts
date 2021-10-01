@@ -9,7 +9,7 @@ export interface ContactItem {
   phone: string;
   email: string;
   createdTime: number;
-  description: string;
+  memo: string;
 }
 
 // 이건 백엔드 연동때문에 설계하셨다함 NEXT
@@ -69,7 +69,7 @@ const contactSlice = createSlice({
         contactItem.name = editItem.name;
         contactItem.phone = editItem.phone;
         contactItem.email = editItem.email;
-        contactItem.description = editItem.description;
+        contactItem.memo = editItem.memo;
       }
       // 변경 표시
       state.isEditCompleted = true;

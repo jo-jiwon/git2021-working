@@ -55,7 +55,7 @@ const PhotoDetail = () => {
               <td>{photoItem.description}</td>
             </tr>
             <tr>
-              <th>이미지</th>
+              <th className="text-nowrap">이미지</th>
               <td>
                 <img
                   src={photoItem.photoUrl}

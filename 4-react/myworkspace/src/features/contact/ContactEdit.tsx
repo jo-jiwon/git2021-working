@@ -9,7 +9,7 @@ const ContactEdit = () => {
   const inputNameRef = useRef<HTMLInputElement>(null);
   const inputPhoneRef = useRef<HTMLInputElement>(null);
   const inputEmailRef = useRef<HTMLInputElement>(null);
-  const descTextAreaRef = useRef<HTMLTextAreaElement>(null);
+  const memoTextAreaRef = useRef<HTMLTextAreaElement>(null);
 
   // id 데이터 가져옴
   const { id } = useParams<{ id: string }>();
@@ -43,15 +43,13 @@ const ContactEdit = () => {
       item.name = inputNameRef.current ? inputNameRef.current?.value : "";
       item.phone = inputPhoneRef.current ? inputPhoneRef.current?.value : "";
       item.email = inputEmailRef.current ? inputEmailRef.current?.value : "";
-      item.description = descTextAreaRef.current
-        ? descTextAreaRef.current?.value
-        : "";
+      item.memo = memoTextAreaRef.current ? memoTextAreaRef.current?.value : "";
 
       // 저장 누르면 입력값 잘 나오는지 확인
       // console.log(item.name);
       // console.log(item.phone);
       // console.log(item.email);
-      // console.log(item.description);
+      // console.log(item.memo);
 
       dispatch(requestEditContact(item));
       // history.push("/contacts");
@@ -103,8 +101,8 @@ const ContactEdit = () => {
               <textarea
                 className="form-control"
                 style={{ height: "30vh" }}
-                ref={descTextAreaRef}
-                defaultValue={contactItem?.description}
+                ref={memoTextAreaRef}
+                defaultValue={contactItem?.memo}
               ></textarea>
             </td>
           </tr>

@@ -60,8 +60,8 @@ const ContactDetail = () => {
             <th>메모</th>
             <td
               dangerouslySetInnerHTML={{
-                __html: contactItem?.description
-                  ? contactItem.description.replaceAll("\n", "<br>")
+                __html: contactItem?.memo
+                  ? contactItem.memo.replaceAll("\n", "<br>")
                   : "",
               }}
             ></td>

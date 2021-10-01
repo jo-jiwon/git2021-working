@@ -119,9 +119,13 @@ const PhotoEdit = () => {
               </td>
             </tr>
             <tr>
-              <th>이미지</th>
+              <th className="text-nowrap">이미지</th>
               <td>
-                <img src={url} alt={photoItem?.title} />
+                <img
+                  src={url}
+                  alt={photoItem?.title}
+                  style={{ width: "100%" }}
+                />
                 <input
                   className="form-control"
                   type="file"
