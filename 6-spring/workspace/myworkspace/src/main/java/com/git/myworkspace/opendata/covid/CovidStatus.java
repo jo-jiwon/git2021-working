@@ -32,6 +32,7 @@ public class CovidStatus {
 	@Id
 	private String incDec; // 전일대비 증감수
 
+	private String createDt;
 	private String isolIngCnt; // 격리중 환자수
 	private String isolClearCnt; // 격리 해제 수
 	private String deathCnt; // 사망자 수

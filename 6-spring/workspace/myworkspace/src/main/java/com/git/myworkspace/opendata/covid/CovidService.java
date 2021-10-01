@@ -61,7 +61,7 @@ public class CovidService {
 //
 //		// 5. byte[] -> 문자열(XML) 변환
 		String data = new String(result, "UTF-8");
-		System.out.println(data);
+//		System.out.println(data);
 		/* ------------------------ 데이터 요청하고 XML 받아오기 끝 ------------------------ */
 
 		/* ------------------- XML -> JSON -> Object(Java) 시작 ------------------- */
@@ -81,9 +81,9 @@ public class CovidService {
 		/* ---------------------- 응답 객체 -> 엔티티 시작 ----------------- */
 		List<CovidStatus> list = new ArrayList<CovidStatus>();
 		for (CovidStatusResponse.Item item : response.getResponse().getBody().getItems().getItem()) {
-			CovidStatus record = CovidStatus.builder().stdDay(item.getStdDay()).gubun(item.getGubun())
-					.incDec(item.getIncDec()).isolIngCnt(item.getIsolIngCnt()).isolClearCnt(item.getIsolClearCnt())
-					.deathCnt(item.getDeathCnt()).defCnt(item.getDefCnt()).build();
+			CovidStatus record = CovidStatus.builder().createDt(item.getCreateDt()).stdDay(item.getStdDay())
+					.gubun(item.getGubun()).incDec(item.getIncDec()).isolIngCnt(item.getIsolIngCnt())
+					.isolClearCnt(item.getIsolClearCnt()).deathCnt(item.getDeathCnt()).defCnt(item.getDefCnt()).build();
 
 			list.add(record);
 		}

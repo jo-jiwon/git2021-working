@@ -83,7 +83,7 @@ public class AirService {
 
 		// 5. byte[] -> 문자열(XML) 변환
 		String data = new String(result, "UTF-8");
-		System.out.println(data);
+//		System.out.println(data);
 		/* ------------------- 데이터 요청하고 XML 받아오기 끝 ------------------- */
 
 		/* ------------------- XML -> JSON -> Object(Java) 시작 ------------------- */

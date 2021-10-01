@@ -32,6 +32,7 @@ public class CovidStatusResponse {
 
 	@Data
 	public class Item {
+		private String createDt;
 		private String stdDay; // 기준일시
 		private String gubun; // 시도명
 		private String incDec; // 전일대비 증감수
