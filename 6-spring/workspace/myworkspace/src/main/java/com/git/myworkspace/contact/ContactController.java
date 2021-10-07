@@ -24,7 +24,7 @@ public class ContactController {
 
 	private ContactRepository repo;
 
-	// repository ÀÎÅÍÆäÀÌ½º ±¸Á¶¿¡ ¸Â´Â °´Ã¼¸¦ Spring¿¡ »ı¼ºÇÏ¿© ³Ö¾îÁÜ
+	// repository ì¸í„°í˜ì´ìŠ¤ êµ¬ì¡°ì— ë§ëŠ” ê°ì²´ë¥¼ Springì— ìƒì„±í•˜ì—¬ ë„£ì–´ì¤Œ
 	@Autowired
 	public ContactController(ContactRepository repo) {
 		this.repo = repo;
@@ -32,17 +32,17 @@ public class ContactController {
 
 //	public SortedMap<Long, Contact> contacts = Collections
 //			.synchronizedSortedMap(new TreeMap<Long, Contact>(Collections.reverseOrder()));
-//	// id°ª »ı¼º
+//	// idê°’ ìƒì„±
 //	public AtomicLong maxId = new AtomicLong();
 
-//	// contact ¸ñ·ÏÁ¶È¸
+//	// contact ëª©ë¡ì¡°íšŒ
 //	@GetMapping(value = "/contacts")
 //	public Collection<Contact> getContacts() {
-//		// ¸Ê °ª ¸ñ·Ï
+//		// ë§µ ê°’ ëª©ë¡
 //		return new ArrayList<Contact>(contacts.values());
 //	}
 
-	// contact ¸ñ·ÏÁ¶È¸
+	// contact ëª©ë¡ì¡°íšŒ
 	@GetMapping(value = "/contacts")
 	public List<Contact> getContacts() throws InterruptedException {
 		// repository.findAll();
@@ -57,91 +57,91 @@ public class ContactController {
 		return repo.findAll(PageRequest.of(page, size, Sort.by("id").descending()));
 	}
 
-	// contact 1°Ç Ãß°¡
+	// contact 1ê±´ ì¶”ê°€
 	@PostMapping(value = "/contacts")
 	public Contact addContact(@RequestBody Contact contact, HttpServletResponse res) throws InterruptedException {
-		// ÀÌ¸§, ¿¬¶ôÃ³, (ÀÌ¸ŞÀÏ) °ªÀ» ³ÖÁö ¾ÊÀ» °æ¿ì ¿¡·¯Ã³¸®ÇØ¶ó
+		// ì´ë¦„, ì—°ë½ì²˜, (ì´ë©”ì¼) ê°’ì„ ë„£ì§€ ì•Šì„ ê²½ìš° ì—ëŸ¬ì²˜ë¦¬í•´ë¼
 		if ((contact.getName() == null || contact.getName().isEmpty())
 				|| (contact.getPhone() == null || contact.getPhone().isEmpty())
 		/* || (contact.getEmail() == null || contact.getEmail().isEmpty()) */) {
 
-			// °ªÀÌ ºó°ª ÀÌ °æ¿ì Å¬¶óÀÌ¾ğÆ® ¿À·ùÀÌ¹Ç·Î 4xx (¿äÃ»°ªÀ» Àß¸ø º¸³¿)
+			// ê°’ì´ ë¹ˆê°’ ì´ ê²½ìš° í´ë¼ì´ì–¸íŠ¸ ì˜¤ë¥˜ì´ë¯€ë¡œ 4xx (ìš”ì²­ê°’ì„ ì˜ëª» ë³´ëƒ„)
 			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return null;
 		}
 
-//		// id°ª »ı¼º
+//		// idê°’ ìƒì„±
 //		Long currentId = maxId.incrementAndGet();
 
-		// ÀÔ·Â ¹ŞÀº µ¥ÀÌÅÍ·Î contact°´Ã¼ »ı¼º
+		// ì…ë ¥ ë°›ì€ ë°ì´í„°ë¡œ contactê°ì²´ ìƒì„±
 		Contact contactItem = Contact.builder().name(contact.getName()).phone(contact.getPhone())
 				.email(contact.getEmail()).createdTime(new Date().getTime()).memo(contact.getMemo()).build();
 
-//		// contact ¸ñ·Ï°´Ã¼ Ãß°¡
+//		// contact ëª©ë¡ê°ì²´ ì¶”ê°€
 //		contacts.put(currentId, contactItem);
 
 		// repository.save(entity)
 		// insert into contact(...) values(...)
 		Contact contactSaved = repo.save(contactItem);
 
-		// ¸®¼Ò½º »ı¼º
+		// ë¦¬ì†ŒìŠ¤ ìƒì„±
 		res.setStatus(HttpServletResponse.SC_CREATED);
 
-		// Ãß°¡µÈ °´Ã¼¸¦ ¹İÈ¯
+		// ì¶”ê°€ëœ ê°ì²´ë¥¼ ë°˜í™˜
 		return contactSaved;
 	}
 
-	// contact 1°Ç »èÁ¦
+	// contact 1ê±´ ì‚­ì œ
 	@DeleteMapping(value = "/contacts/{id}")
-	// id °ªÀÌ path variable
+	// id ê°’ì´ path variable
 	public boolean removeContact(@PathVariable long id, HttpServletResponse res) throws InterruptedException {
 
-//		// ÇØ´ç idÀÇ µ¥ÀÌÅÍ 1°ÇÀ» °¡Á®¿È
+//		// í•´ë‹¹ idì˜ ë°ì´í„° 1ê±´ì„ ê°€ì ¸ì˜´
 //		Contact contact = contacts.get(Long.valueOf(id));
 
-		// id¿¡ ÇØ´çÇÏ´Â °´Ã¼°¡ ¾øÀ¸¸é
-		// Optional null-safe, ÀÚ¹Ù 1.8 ³ª¿Â ¹æ½Ä
+		// idì— í•´ë‹¹í•˜ëŠ” ê°ì²´ê°€ ì—†ìœ¼ë©´
+		// Optional null-safe, ìë°” 1.8 ë‚˜ì˜¨ ë°©ì‹
 		// repository.findBy(id)
 		// select * from contact where id = ?;
 		Optional<Contact> contact = repo.findById(id);
 
-		// ÇØ´ç idÀÇ µ¥ÀÌÅÍ°¡ ¾øÀ» °æ¿ì
+		// í•´ë‹¹ idì˜ ë°ì´í„°ê°€ ì—†ì„ ê²½ìš°
 		if (contact.isEmpty()) {
-			// not found(404) : ÇØ´ç °æ·Î¿¡ ¸®¼Ò½º ¾øÀ½
+			// not found(404) : í•´ë‹¹ ê²½ë¡œì— ë¦¬ì†ŒìŠ¤ ì—†ìŒ
 			res.setStatus(HttpServletResponse.SC_NOT_FOUND);
 			return false;
 		}
 
-//		// »èÁ¦ ¼öÇà
+//		// ì‚­ì œ ìˆ˜í–‰
 //		contacts.remove(Long.valueOf(id));
 		repo.deleteById(id);
 		return true;
 	}
 
-	// contact 1°Ç ¼öÁ¤
+	// contact 1ê±´ ìˆ˜ì •
 	@PutMapping(value = "/contacts/{id}")
-	// id °ªÀÌ path variable
+	// id ê°’ì´ path variable
 	public Contact modifyContact(@PathVariable long id, @RequestBody Contact contact, HttpServletResponse res)
 			throws InterruptedException {
 
-//		// ÇØ´ç idÀÇ µ¥ÀÌÅÍ 1°ÇÀ» °¡Á®¿È
+//		// í•´ë‹¹ idì˜ ë°ì´í„° 1ê±´ì„ ê°€ì ¸ì˜´
 //		Contact findItem = contacts.get(Long.valueOf(id));
 		Optional<Contact> contactItem = repo.findById(id);
 
-		// ÇØ´ç idÀÇ µ¥ÀÌÅÍ°¡ ¾øÀ» °æ¿ì
+		// í•´ë‹¹ idì˜ ë°ì´í„°ê°€ ì—†ì„ ê²½ìš°
 		if (contactItem.isEmpty()) {
-			// not found(404) : ÇØ´ç °æ·Î¿¡ ¸®¼Ò½º ¾øÀ½
+			// not found(404) : í•´ë‹¹ ê²½ë¡œì— ë¦¬ì†ŒìŠ¤ ì—†ìŒ
 			res.setStatus(HttpServletResponse.SC_NOT_FOUND);
 			return null;
 		}
 
-		// µ¥ÀÌÅÍ °ËÁõ ·ÎÁ÷
-		// ÀÌ¸§, ¿¬¶ôÃ³, (ÀÌ¸ŞÀÏ)ÀÌ ÇÏ³ª¶óµµ ºó°ªÀÌ¸é ¿¡·¯Ã³¸®
+		// ë°ì´í„° ê²€ì¦ ë¡œì§
+		// ì´ë¦„, ì—°ë½ì²˜, (ì´ë©”ì¼)ì´ í•˜ë‚˜ë¼ë„ ë¹ˆê°’ì´ë©´ ì—ëŸ¬ì²˜ë¦¬
 		if ((contact.getName() == null || contact.getName().isEmpty())
 				|| (contact.getPhone() == null || contact.getPhone().isEmpty())
 		/* || (contact.getEmail() == null || contact.getEmail().isEmpty()) */) {
-			// bad request(400) : Å¬¶óÀÌ¾ğÆ® ¿À·ù
-			// ºó°ªÀ¸·Î º¸³Â°Å³ª, ¿äÃ»°ªÀ» Àß¸øº¸³ÂÀ» °æ¿ì
+			// bad request(400) : í´ë¼ì´ì–¸íŠ¸ ì˜¤ë¥˜
+			// ë¹ˆê°’ìœ¼ë¡œ ë³´ëƒˆê±°ë‚˜, ìš”ì²­ê°’ì„ ì˜ëª»ë³´ëƒˆì„ ê²½ìš°
 			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return null;
 		}
@@ -154,12 +154,12 @@ public class ContactController {
 		contactToSave.setMemo(contact.getMemo());
 
 		// repository.save(entity)
-		// id°¡ ÀÖÀ¸¸é update, ¾øÀ¸¸é insert
+		// idê°€ ìˆìœ¼ë©´ update, ì—†ìœ¼ë©´ insert
 		Contact contactSaved = repo.save(contactToSave);
 
 		return contactSaved;
 
-//		// µ¥ÀÌÅÍ°ª º¯°æ
+//		// ë°ì´í„°ê°’ ë³€ê²½
 //		findItem.setName(contact.getName());
 //		findItem.setPhone(contact.getPhone());
 //		findItem.setEmail(contact.getEmail());

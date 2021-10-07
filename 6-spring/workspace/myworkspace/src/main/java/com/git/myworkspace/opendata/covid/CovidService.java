@@ -9,88 +9,94 @@ import java.util.List;
 
 import org.json.XML;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
 
-// ¿ÜºÎ ½Ã½ºÅÛ Åë½Å
-// µ¥ÀÌÅÍ Æ®·»Á§¼Ç Ã³¸®
+// ì™¸ë¶€ ì‹œìŠ¤í…œ í†µì‹ 
+// ë°ì´í„° íŠ¸ë Œì ì…˜ ì²˜ë¦¬
 @Service
 public class CovidService {
 
-	// ³» ÀÎÁõÅ° °ª
+	// ë‚´ ì¸ì¦í‚¤ ê°’
 	private final String SERVICE_KEY = "c9sJH%2FdoAdEMpdE9phwC1peoOvr72BcpFL03UXX9UTbph%2FptgZva0QxYWspwlEV0D%2F%2FuhYlfaP0kxnkNZ0soCQ%3D%3D";
 
-	// ¸®Æ÷ÁöÅÍ¸®
-	private CovidStatusRepository repo;
+	// ë¦¬í¬ì§€í„°ë¦¬
+	private CovidSidoDailyRepository repo;
 
-	// ½ºÇÁ¸µ¿¡ ÀÇÇØ¼­ ÀÇÁ¸ÁÖÀÔ
+	// ìŠ¤í”„ë§ì— ì˜í•´ì„œ ì˜ì¡´ì£¼ì…
 	@Autowired
-	public CovidService(CovidStatusRepository repo) {
+	public CovidService(CovidSidoDailyRepository repo) {
 		this.repo = repo;
 	}
 
+	// 1ì‹œê°„ ë§ˆë‹¤ ì‹¤í–‰
+//	@Scheduled(fixedRate = 1000 * 60 * 1)
+	// ë§¤ì¼ 10ì‹œ 5ë¶„ ë§ˆë‹¤ ì‹¤í–‰
+	@Scheduled(cron = "0 5 10 * * *")
+
+	// í•´ë‹¹ ìºì‹œì— í•˜ìœ„ í‚¤ ì „ë¶€ ì‚­ì œ
+	@CacheEvict(value = "covid-current", allEntries = true)
 	@SuppressWarnings("deprecation")
-	// 1½Ã°£ ¸¶´Ù ½ÇÇà
-	@Scheduled(fixedRate = 1000 * 60 * 60 * 1)
-	// ¸ÅÀÏ 9½Ã ¸¶´Ù ½ÇÇà
-//	@Scheduled(cron = "* 0 9 * * *")
-	public void requestCovidStatus() throws IOException {
+	public void requestCovidSidoDaily() throws IOException {
 		System.out.println(new Date().toLocaleString());
 
-		/* ------------------------ µ¥ÀÌÅÍ ¿äÃ»ÇÏ°í XML ¹Ş¾Æ¿À±â ½ÃÀÛ ------------------------ */
-//		// 1. ¿äÃ» URL ¸¸µé±â
+		/* ------------------------ ë°ì´í„° ìš”ì²­í•˜ê³  XML ë°›ì•„ì˜¤ê¸° ì‹œì‘ ------------------------ */
+//		// 1. ìš”ì²­ URL ë§Œë“¤ê¸°
 		StringBuilder builder = new StringBuilder();
 		builder.append("http://openapi.data.go.kr/openapi");
 		builder.append("/service/rest/Covid19");
 		builder.append("/getCovid19SidoInfStateJson");
 		builder.append("?serviceKey=" + SERVICE_KEY);
 		builder.append("&pageNo=1&numOfRows=10");
+		builder.append("&startCreateDt=20210922");
 
 		System.out.println(builder.toString());
 //
-//		// 2. URL °´Ã¼ »ı¼º
+//		// 2. URL ê°ì²´ ìƒì„±
 		URL url = new URL(builder.toString());
 //
-//		// 3. Http Á¢¼Ó »ı¼º
+//		// 3. Http ì ‘ì† ìƒì„±
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 //
-//		// 4. byte[]¹è¿­·Î µ¥ÀÌÅÍ¸¦ ÀĞ¾î¿È
+//		// 4. byte[]ë°°ì—´ë¡œ ë°ì´í„°ë¥¼ ì½ì–´ì˜´
 		byte[] result = con.getInputStream().readAllBytes();
 //
-//		// 5. byte[] -> ¹®ÀÚ¿­(XML) º¯È¯
+//		// 5. byte[] -> ë¬¸ìì—´(XML) ë³€í™˜
 		String data = new String(result, "UTF-8");
-//		System.out.println(data);
-		/* ------------------------ µ¥ÀÌÅÍ ¿äÃ»ÇÏ°í XML ¹Ş¾Æ¿À±â ³¡ ------------------------ */
+		System.out.println(data);
+		/* ------------------------ ë°ì´í„° ìš”ì²­í•˜ê³  XML ë°›ì•„ì˜¤ê¸° ë ------------------------ */
 
-		/* ------------------- XML -> JSON -> Object(Java) ½ÃÀÛ ------------------- */
-		// JSON(°´Ã¼) -> JSON(¹®ÀÚ¿­)
+		/* ------------------- XML -> JSON -> Object(Java) ì‹œì‘ ------------------- */
+		// JSON(ê°ì²´) -> JSON(ë¬¸ìì—´)
 		String json = XML.toJSONObject(data).toString(2);
-//		System.out.println(json);
+		System.out.println(json);
 
-		// JSON(¹®ÀÚ¿­) -> Java(object)
-		CovidStatusResponse response = new Gson().fromJson(json, CovidStatusResponse.class);
+		// JSON(ë¬¸ìì—´) -> Java(object)
+		CovidSidoDailyResponse response = new Gson().fromJson(json, CovidSidoDailyResponse.class);
 		System.out.println(response);
 
-		// Ã¹¹øÂ° µ¥ÀÌÅÍ ÀĞ¾î¿Í º¸±â
+		// ì²«ë²ˆì§¸ ë°ì´í„° ì½ì–´ì™€ ë³´ê¸°
 //		CovidStatusResponse.Item item = response.getResponse().getBody().getItems().getItem().get(1);
 //		System.out.println(item);
-		/* ------------------- XML -> JSON -> Object(Java) ³¡ ------------------- */
+		/* ------------------- XML -> JSON -> Object(Java) ë ------------------- */
 
-		/* ---------------------- ÀÀ´ä °´Ã¼ -> ¿£Æ¼Æ¼ ½ÃÀÛ ----------------- */
-		List<CovidStatus> list = new ArrayList<CovidStatus>();
-		for (CovidStatusResponse.Item item : response.getResponse().getBody().getItems().getItem()) {
-			CovidStatus record = CovidStatus.builder().createDt(item.getCreateDt()).stdDay(item.getStdDay())
-					.gubun(item.getGubun()).incDec(item.getIncDec()).isolIngCnt(item.getIsolIngCnt())
-					.isolClearCnt(item.getIsolClearCnt()).deathCnt(item.getDeathCnt()).defCnt(item.getDefCnt()).build();
+		/* ---------------------- ì‘ë‹µ ê°ì²´ -> ì—”í‹°í‹° ì‹œì‘ ----------------- */
+		List<CovidSidoDaily> list = new ArrayList<CovidSidoDaily>();
+		for (CovidSidoDailyResponse.Item item : response.getResponse().getBody().getItems().getItem()) {
+			CovidSidoDaily record = CovidSidoDaily.builder().stdDay(item.getStdDay()).gubun(item.getGubun())
+					.overFlowCnt(item.getOverFlowCnt().isEmpty() ? null : Integer.valueOf(item.getOverFlowCnt()))
+					.localOccCnt(item.getLocalOccCnt().isEmpty() ? null : Integer.valueOf(item.getLocalOccCnt()))
+					.build();
 
 			list.add(record);
 		}
-		/* ---------------------- ÀÀ´ä °´Ã¼ -> ¿£Æ¼Æ¼ ³¡ ----------------- */
+		/* ---------------------- ì‘ë‹µ ê°ì²´ -> ì—”í‹°í‹° ë ----------------- */
 
-		/* ---------------------- ¿£Æ¼Æ¼°´Ã¼ -> ¸®Æ÷ÁöÅÍ¸®·Î ÀúÀå ½ÃÀÛ ----------------- */
+		/* ---------------------- ì—”í‹°í‹°ê°ì²´ -> ë¦¬í¬ì§€í„°ë¦¬ë¡œ ì €ì¥ ì‹œì‘ ----------------- */
 		repo.saveAll(list);
-		/* ---------------------- ¿£Æ¼Æ¼°´Ã¼ -> ¸®Æ÷ÁöÅÍ¸®·Î ÀúÀå ³¡ ----------------- */
+		/* ---------------------- ì—”í‹°í‹°ê°ì²´ -> ë¦¬í¬ì§€í„°ë¦¬ë¡œ ì €ì¥ ë ----------------- */
 	}
 }
