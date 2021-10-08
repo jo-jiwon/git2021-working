@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.git.myworkspace.lib.TextProcesser;
 
 @RestController
+// 컨트롤러 + 리스폰바디 결합된거 = 레스트컨트롤러
 public class PhotoController {
 
 	private PhotoRepository repo;

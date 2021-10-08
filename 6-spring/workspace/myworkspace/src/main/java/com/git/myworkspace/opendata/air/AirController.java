@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Component("airController")
+// controller: 클라이언트의 요청을 받아서 객체를 호출하는거
 @RestController
 @RequestMapping(value = "/opendata/air")
 public class AirController {
